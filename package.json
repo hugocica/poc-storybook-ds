@@ -11,7 +11,7 @@
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook",
-    "generate": "node ./util/create-component"
+    "generate": "node ./utils/create-component"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.2.0",
     "@storybook/react": "^6.1.21",
+    "@svgr/webpack": "^5.5.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@types/jest": "^26.0.20",
