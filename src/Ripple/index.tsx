@@ -1,9 +1,9 @@
 import React, { useLayoutEffect, useState } from "react";
 
-import * as t from "./types";
 import * as s from "./styles";
+import { IRippleProps } from "./types";
 
-const Ripple = ({ duration = 850 }: t.IRipple) => {
+const Ripple = ({ duration = 850 }: IRippleProps) => {
   const [rippleArray, setRippleArray] = useState([]);
 
   const cleanUpFunction = () => {

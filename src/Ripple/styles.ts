@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { IRipple } from "./types";
+import { IRippleProps } from "./types";
 
 const rippleAnimation = keyframes`
   to {
@@ -7,7 +7,7 @@ const rippleAnimation = keyframes`
       transform: scale(2);
     }
 `;
-export const RippleContainer = styled.div<IRipple>`
+export const RippleContainer = styled.div<IRippleProps>`
   position: absolute;
   top: 0;
   right: 0;
@@ -19,7 +19,7 @@ export const RippleContainer = styled.div<IRipple>`
     border-radius: 100%;
     position: absolute;
     opacity: 0.75;
-    background-color: ${({ theme }) => theme.colors.system.white};
+    background-color: ${({ theme }) => theme.colors.neutrals.white};
     animation-name: ${rippleAnimation};
     animation-duration: ${({ duration }) => duration}ms;
   }
