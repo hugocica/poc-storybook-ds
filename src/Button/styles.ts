@@ -1,12 +1,11 @@
 import React from "react";
 import styled, { DefaultTheme } from "styled-components";
 // import ButtonMUI, { ButtonProps } from '@material-ui/core/Button';
-import { IButtonComponentProps } from "./types";
+import { TButtonProps, IButtonProps } from "./types";
 
-type TButton = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  IButtonComponentProps & {
-    theme: DefaultTheme;
-  } & React.ButtonHTMLAttributes<HTMLButtonElement>;
+type TButton = TButtonProps & {
+  theme: DefaultTheme;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
   if (outlined) {
@@ -16,9 +15,9 @@ const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
   if (disabled) {
     switch (variant) {
       case "primary":
-        return theme.colors.primary.green04;
+        return theme.colors.primary.green40;
       case "secondary":
-        return theme.colors.secondary.purple04;
+        return theme.colors.secondary.purple40;
       default:
         return theme.colors.neutrals.lightergrey;
     }
@@ -38,9 +37,9 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
   if (disabled) {
     switch (variant) {
       case "primary":
-        return theme.colors.primary.green04;
+        return theme.colors.primary.green40;
       case "secondary":
-        return theme.colors.secondary.purple04;
+        return theme.colors.secondary.purple40;
       default:
         return theme.colors.neutrals.lightgrey;
     }
@@ -57,7 +56,9 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
     }
   }
 
-  return !variant ? theme.colors.neutrals.darkgrey : theme.colors.system.white;
+  return !variant
+    ? theme.colors.neutrals.darkgrey
+    : theme.colors.neutrals.white;
 };
 
 const handleBorderColor = ({ variant, disabled, theme }: TButton) => {
@@ -82,7 +83,7 @@ const handleBorderColor = ({ variant, disabled, theme }: TButton) => {
   }
 };
 
-export const Button = styled.button<IButtonComponentProps>`
+export const Button = styled.button<IButtonProps>`
   background-color: ${({ variant, outlined, disabled, theme }) =>
     handleBGColor({ variant, outlined, disabled, theme })};
   border: ${({ variant, outlined, disabled, theme }) =>

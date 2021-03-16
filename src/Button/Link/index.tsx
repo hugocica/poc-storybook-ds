@@ -1,24 +1,16 @@
 import React from "react";
 
-import { IButtonLinkComponentProps } from "./types";
+import { ILinkProps } from "./types";
 import * as s from "./styles";
 
-const ButtonLink: React.FC<IButtonLinkComponentProps> = ({
+const ButtonLink: React.FC<ILinkProps> = ({
   children,
-  elementContainer,
+  element = "button",
   to,
   ...rest
 }) => {
-  if (elementContainer) {
-    return (
-      <s.Link as={elementContainer} {...rest}>
-        {children}
-      </s.Link>
-    );
-  }
-
   return (
-    <s.Link to={to || ""} {...rest}>
+    <s.Link as={element} {...rest}>
       {children}
     </s.Link>
   );

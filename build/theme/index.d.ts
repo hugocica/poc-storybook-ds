@@ -11,6 +11,7 @@ declare type TSystem = {
 declare type TNeutrals = {
     [key in keyof typeof colors.neutrals]: string;
 };
+export declare type TColors = keyof typeof colors.primary | keyof typeof colors.secondary | keyof typeof colors.neutrals | keyof typeof colors.system;
 declare module "styled-components" {
     interface DefaultTheme {
         colors: {
@@ -34,23 +35,24 @@ declare module "styled-components" {
 export declare const colors: {
     primary: {
         green: string;
-        green04: string;
+        green40: string;
         gray: string;
-        gray04: string;
+        gray40: string;
     };
     secondary: {
         purple: string;
-        purple04: string;
+        purple40: string;
         lightpurple: string;
-        lightpurple04: string;
+        lightpurple40: string;
     };
     system: {
-        white: string;
-        black: string;
         error: string;
         warning: string;
     };
     neutrals: {
+        white: string;
+        white25: string;
+        black: string;
         darkestgrey: string;
         darkgrey: string;
         lightgrey: string;
@@ -91,72 +93,42 @@ export declare const genericFontProps: {
 export declare const fonts: {
     heading1: {
         fontSize: number;
-        letterSpacing: number;
         lineHeight: string;
         fontFamily: string;
     };
     heading2: {
         fontSize: number;
-        letterSpacing: number;
         lineHeight: string;
         fontFamily: string;
     };
     heading3: {
         fontSize: number;
-        letterSpacing: number;
         lineHeight: string;
         fontFamily: string;
     };
     heading4: {
         fontSize: number;
-        letterSpacing: number;
         lineHeight: string;
         fontFamily: string;
     };
-    headline: {
+    heading5: {
         fontSize: number;
-        letterSpacing: number;
         lineHeight: string;
         fontFamily: string;
     };
-    title: {
+    body1: {
         fontSize: number;
-        letterSpacing: number;
-        fontWeight: number;
-        lineHeight: string;
-    };
-    subheading: {
-        fontSize: number;
-        letterSpacing: number;
-        fontWeight: number;
         lineHeight: string;
         fontFamily: string;
     };
-    body: {
+    body2: {
         fontSize: number;
-        letterSpacing: number;
-        lineHeight: string;
-        fontFamily: string;
-    };
-    caption: {
-        fontSize: number;
-        letterSpacing: number;
-        fontWeight: number;
-        lineHeight: string;
-        fontFamily: string;
-    };
-    captionUppercase: {
-        fontSize: number;
-        letterSpacing: number;
-        textTransform: string;
-        fontWeight: number;
         lineHeight: string;
         fontFamily: string;
     };
     button: {
         fontSize: number;
         fontWeight: number;
-        letterSpacing: number;
         textTransform: string;
         lineHeight: string;
         fontFamily: string;
@@ -180,23 +152,24 @@ declare const _default: {
     colors: {
         primary: {
             green: string;
-            green04: string;
+            green40: string;
             gray: string;
-            gray04: string;
+            gray40: string;
         };
         secondary: {
             purple: string;
-            purple04: string;
+            purple40: string;
             lightpurple: string;
-            lightpurple04: string;
+            lightpurple40: string;
         };
         system: {
-            white: string;
-            black: string;
             error: string;
             warning: string;
         };
         neutrals: {
+            white: string;
+            white25: string;
+            black: string;
             darkestgrey: string;
             darkgrey: string;
             lightgrey: string;
@@ -234,72 +207,42 @@ declare const _default: {
     fonts: {
         heading1: {
             fontSize: number;
-            letterSpacing: number;
             lineHeight: string;
             fontFamily: string;
         };
         heading2: {
             fontSize: number;
-            letterSpacing: number;
             lineHeight: string;
             fontFamily: string;
         };
         heading3: {
             fontSize: number;
-            letterSpacing: number;
             lineHeight: string;
             fontFamily: string;
         };
         heading4: {
             fontSize: number;
-            letterSpacing: number;
             lineHeight: string;
             fontFamily: string;
         };
-        headline: {
+        heading5: {
             fontSize: number;
-            letterSpacing: number;
             lineHeight: string;
             fontFamily: string;
         };
-        title: {
+        body1: {
             fontSize: number;
-            letterSpacing: number;
-            fontWeight: number;
-            lineHeight: string;
-        };
-        subheading: {
-            fontSize: number;
-            letterSpacing: number;
-            fontWeight: number;
             lineHeight: string;
             fontFamily: string;
         };
-        body: {
+        body2: {
             fontSize: number;
-            letterSpacing: number;
-            lineHeight: string;
-            fontFamily: string;
-        };
-        caption: {
-            fontSize: number;
-            letterSpacing: number;
-            fontWeight: number;
-            lineHeight: string;
-            fontFamily: string;
-        };
-        captionUppercase: {
-            fontSize: number;
-            letterSpacing: number;
-            textTransform: string;
-            fontWeight: number;
             lineHeight: string;
             fontFamily: string;
         };
         button: {
             fontSize: number;
             fontWeight: number;
-            letterSpacing: number;
             textTransform: string;
             lineHeight: string;
             fontFamily: string;

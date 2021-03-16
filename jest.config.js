@@ -2,9 +2,11 @@ module.exports = {
   roots: ["./src"],
   setupFilesAfterEnv: ["./jest.setup.ts"],
   moduleFileExtensions: ["ts", "tsx", "js"],
-  testPathIgnorePatterns: ["node_modules/"],
+  testPathIgnorePatterns: ["node_modules/", "build", "config"],
   transform: {
     "^.+\\.tsx?$": "ts-jest",
+    "^(?!.*\\.(js|jsx|mjs|cjs|ts|tsx|css|json)$)":
+      "<rootDir>/config/jest/fileTransform.js",
   },
   testMatch: ["**/*.test.(ts|tsx)"],
   moduleNameMapper: {

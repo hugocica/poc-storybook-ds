@@ -1,3 +1,3 @@
-export interface IRipple {
+export interface IRippleProps {
     duration?: number;
 }

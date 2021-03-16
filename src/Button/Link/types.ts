@@ -1,5 +1,5 @@
-export interface IButtonLinkComponentProps {
+export interface ILinkProps {
   disabled?: boolean;
-  elementContainer?: "a" | "button";
+  element?: "a" | "button";
   to?: string;
 }

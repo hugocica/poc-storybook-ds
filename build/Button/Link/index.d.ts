@@ -1,4 +1,4 @@
 import React from "react";
-import { IButtonLinkComponentProps } from "./types";
-declare const ButtonLink: React.FC<IButtonLinkComponentProps>;
+import { ILinkProps } from "./types";
+declare const ButtonLink: React.FC<ILinkProps>;
 export default ButtonLink;

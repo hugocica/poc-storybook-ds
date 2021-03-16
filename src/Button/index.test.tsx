@@ -1,5 +1,5 @@
 import React from "react";
-import { renderWithProviders, screen } from "../setupTests";
+import { renderWithProviders, screen } from "setupTests";
 import theme from "../theme";
 import Button from "./index";
 
@@ -18,8 +18,8 @@ describe("Button Component", () => {
     const primaryButton = screen.getByRole("button");
     expect(primaryButton).toBeDefined();
     expect(primaryButton).toHaveStyle(
-      `background-color: ${theme.colors.blue100};
-      color: ${theme.colors.white};`
+      `background-color: ${theme.colors.primary.green};
+      color: ${theme.colors.neutrals.white};`
     );
   });
 

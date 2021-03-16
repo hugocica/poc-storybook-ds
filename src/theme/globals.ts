@@ -25,11 +25,11 @@ export default createGlobalStyle`
   }
 
   ::selection {
-    background-color: ${({ theme }) => theme.colors.green100};
+    background-color: ${({ theme }) => theme.colors.primary.green};
   }
 
   ::-webkit-scrollbar {
-    background-color: ${({ theme }) => theme.colors.gray1};
+    background-color: ${({ theme }) => theme.colors.neutrals.lightergrey};
     border-radius: 8px;
     height: 8px;
     position: absolute;
@@ -37,11 +37,11 @@ export default createGlobalStyle`
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: ${({ theme }) => theme.colors.gray2};
+    background-color: ${({ theme }) => theme.colors.neutrals.lightgrey};
     border-radius: 8px;
   }
 
   body {
-    background-color: ${({ theme }) => theme.colors.gray1};
+    background-color: ${({ theme }) => theme.colors.neutrals.white};
   }
 `;

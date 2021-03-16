@@ -16,6 +16,12 @@ type TNeutrals = {
   [key in keyof typeof colors.neutrals]: string;
 };
 
+export type TColors =
+  | keyof typeof colors.primary
+  | keyof typeof colors.secondary
+  | keyof typeof colors.neutrals
+  | keyof typeof colors.system;
+
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
@@ -35,23 +41,24 @@ declare module "styled-components" {
 export const colors = {
   primary: {
     green: "#44C0BC",
-    green04: "rgba(#44C0BC, 0.4)",
+    green40: "rgba(68, 192, 188, 0.4)",
     gray: "#435C84",
-    gray04: "rgba(#435C84, 0.4)",
+    gray40: "rgba(67, 92, 132, 0.4)",
   },
   secondary: {
     purple: "#5A3BD3",
-    purple04: "rgba(#5A3BD3, 0.4)",
+    purple40: "rgba(90, 59, 211, 0.4)",
     lightpurple: "#A780F9",
-    lightpurple04: "rgba(#A780F9, 0.4)",
+    lightpurple40: "rgba(167, 128, 249, 0.4)",
   },
   system: {
-    white: "#ffffff",
-    black: "#000000",
     error: "#FF656C",
     warning: "#FFC065",
   },
   neutrals: {
+    white: "#ffffff",
+    white25: "rgba(255, 255, 255, 0.25)",
+    black: "#000000",
     darkestgrey: "#4C5867",
     darkgrey: "#72859C",
     lightgrey: "#AEC0D1",
@@ -101,75 +108,45 @@ export const genericFontProps = {
 export const fonts = {
   heading1: {
     ...genericFontProps,
-    fontSize: 92,
-    letterSpacing: 0,
-    lineHeight: "125px",
+    fontSize: 68,
+    lineHeight: "76px",
   },
   heading2: {
     ...genericFontProps,
-    fontSize: 56,
-    letterSpacing: 1,
-    lineHeight: "76px",
+    fontSize: 46,
+    lineHeight: "54px",
   },
   heading3: {
     ...genericFontProps,
-    fontSize: 34,
-    letterSpacing: 0.5,
-    lineHeight: "46px",
+    fontSize: 30,
+    lineHeight: "38px",
   },
   heading4: {
     ...genericFontProps,
-    fontSize: 22,
-    letterSpacing: 0,
-    lineHeight: "30px",
+    fontSize: 24,
+    lineHeight: "32px",
   },
-  headline: {
+  heading5: {
     ...genericFontProps,
-    fontSize: 18,
-    letterSpacing: 0,
-    lineHeight: "25px",
+    fontSize: 24,
+    lineHeight: "28px",
   },
-  title: {
-    fontSize: 14,
-    letterSpacing: 0.25,
-    fontWeight: 600,
-    lineHeight: "19px",
-  },
-  subheading: {
+  body1: {
     ...genericFontProps,
-    fontSize: 11,
-    letterSpacing: 1.5,
-    fontWeight: 600,
-    lineHeight: "15px",
+    fontSize: 16,
+    lineHeight: "24px",
   },
-  body: {
+  body2: {
     ...genericFontProps,
     fontSize: 14,
-    letterSpacing: 0,
-    lineHeight: "19px",
-  },
-  caption: {
-    ...genericFontProps,
-    fontSize: 12,
-    letterSpacing: 0,
-    fontWeight: 400,
-    lineHeight: "16px",
-  },
-  captionUppercase: {
-    ...genericFontProps,
-    fontSize: 12,
-    letterSpacing: 0.5,
-    textTransform: "uppercase",
-    fontWeight: 400,
-    lineHeight: "16px",
+    lineHeight: "22px",
   },
   button: {
     ...genericFontProps,
-    fontSize: 11,
+    fontSize: 16,
     fontWeight: 600,
-    letterSpacing: 1.5,
     textTransform: "uppercase",
-    lineHeight: "15px",
+    lineHeight: "24px",
   },
 };
 

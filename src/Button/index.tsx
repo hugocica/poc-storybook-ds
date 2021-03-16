@@ -4,11 +4,9 @@ import Ripple from "../Ripple";
 // import { LoadingSpinner } from 'components/Loading';
 
 import * as s from "./styles";
-import { TButtonComponentProps } from "./types";
+import { TButtonProps } from "./types";
 
-const Button: React.FC<
-  TButtonComponentProps & React.ButtonHTMLAttributes<HTMLButtonElement>
-> = ({
+const Button: React.FC<TButtonProps> = ({
   children,
   disabled,
   isLoading,
@@ -39,6 +37,6 @@ const Button: React.FC<
   );
 };
 
-export { TButtonComponentProps };
+export { TButtonProps };
 
 export default Button;

@@ -53,7 +53,7 @@ function __makeTemplateObject(cooked, raw) {
 var rippleAnimation = keyframes(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"], ["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"])));
 var RippleContainer = styled.div(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  span {\n    transform: scale(0);\n    border-radius: 100%;\n    position: absolute;\n    opacity: 0.75;\n    background-color: ", ";\n    animation-name: ", ";\n    animation-duration: ", "ms;\n  }\n"], ["\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  span {\n    transform: scale(0);\n    border-radius: 100%;\n    position: absolute;\n    opacity: 0.75;\n    background-color: ", ";\n    animation-name: ", ";\n    animation-duration: ", "ms;\n  }\n"])), function (_a) {
     var theme = _a.theme;
-    return theme.colors.system.white;
+    return theme.colors.neutrals.white;
 }, rippleAnimation, function (_a) {
     var duration = _a.duration;
     return duration;
@@ -110,9 +110,9 @@ var handleBGColor = function (_a) {
     if (disabled) {
         switch (variant) {
             case "primary":
-                return theme.colors.primary.green04;
+                return theme.colors.primary.green40;
             case "secondary":
-                return theme.colors.secondary.purple04;
+                return theme.colors.secondary.purple40;
             default:
                 return theme.colors.neutrals.lightergrey;
         }
@@ -131,9 +131,9 @@ var handleTextColor = function (_a) {
     if (disabled) {
         switch (variant) {
             case "primary":
-                return theme.colors.primary.green04;
+                return theme.colors.primary.green40;
             case "secondary":
-                return theme.colors.secondary.purple04;
+                return theme.colors.secondary.purple40;
             default:
                 return theme.colors.neutrals.lightgrey;
         }
@@ -148,7 +148,9 @@ var handleTextColor = function (_a) {
                 return theme.colors.neutrals.darkgrey;
         }
     }
-    return !variant ? theme.colors.neutrals.darkgrey : theme.colors.system.white;
+    return !variant
+        ? theme.colors.neutrals.darkgrey
+        : theme.colors.neutrals.white;
 };
 var handleBorderColor = function (_a) {
     var variant = _a.variant, disabled = _a.disabled, theme = _a.theme;
@@ -229,23 +231,24 @@ var Button = function (_a) {
 var colors = {
     primary: {
         green: "#44C0BC",
-        green04: "rgba(#44C0BC, 0.4)",
+        green40: "rgba(68, 192, 188, 0.4)",
         gray: "#435C84",
-        gray04: "rgba(#435C84, 0.4)",
+        gray40: "rgba(67, 92, 132, 0.4)",
     },
     secondary: {
         purple: "#5A3BD3",
-        purple04: "rgba(#5A3BD3, 0.4)",
+        purple40: "rgba(90, 59, 211, 0.4)",
         lightpurple: "#A780F9",
-        lightpurple04: "rgba(#A780F9, 0.4)",
+        lightpurple40: "rgba(167, 128, 249, 0.4)",
     },
     system: {
-        white: "#ffffff",
-        black: "#000000",
         error: "#FF656C",
         warning: "#FFC065",
     },
     neutrals: {
+        white: "#ffffff",
+        white25: "rgba(255, 255, 255, 0.25)",
+        black: "#000000",
         darkestgrey: "#4C5867",
         darkgrey: "#72859C",
         lightgrey: "#AEC0D1",
@@ -290,22 +293,14 @@ var genericFontProps = {
     fontFamily: "Space Grotesk",
 };
 var fonts = {
-    heading1: __assign(__assign({}, genericFontProps), { fontSize: 92, letterSpacing: 0, lineHeight: "125px" }),
-    heading2: __assign(__assign({}, genericFontProps), { fontSize: 56, letterSpacing: 1, lineHeight: "76px" }),
-    heading3: __assign(__assign({}, genericFontProps), { fontSize: 34, letterSpacing: 0.5, lineHeight: "46px" }),
-    heading4: __assign(__assign({}, genericFontProps), { fontSize: 22, letterSpacing: 0, lineHeight: "30px" }),
-    headline: __assign(__assign({}, genericFontProps), { fontSize: 18, letterSpacing: 0, lineHeight: "25px" }),
-    title: {
-        fontSize: 14,
-        letterSpacing: 0.25,
-        fontWeight: 600,
-        lineHeight: "19px",
-    },
-    subheading: __assign(__assign({}, genericFontProps), { fontSize: 11, letterSpacing: 1.5, fontWeight: 600, lineHeight: "15px" }),
-    body: __assign(__assign({}, genericFontProps), { fontSize: 14, letterSpacing: 0, lineHeight: "19px" }),
-    caption: __assign(__assign({}, genericFontProps), { fontSize: 12, letterSpacing: 0, fontWeight: 400, lineHeight: "16px" }),
-    captionUppercase: __assign(__assign({}, genericFontProps), { fontSize: 12, letterSpacing: 0.5, textTransform: "uppercase", fontWeight: 400, lineHeight: "16px" }),
-    button: __assign(__assign({}, genericFontProps), { fontSize: 11, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", lineHeight: "15px" }),
+    heading1: __assign(__assign({}, genericFontProps), { fontSize: 68, lineHeight: "76px" }),
+    heading2: __assign(__assign({}, genericFontProps), { fontSize: 46, lineHeight: "54px" }),
+    heading3: __assign(__assign({}, genericFontProps), { fontSize: 30, lineHeight: "38px" }),
+    heading4: __assign(__assign({}, genericFontProps), { fontSize: 24, lineHeight: "32px" }),
+    heading5: __assign(__assign({}, genericFontProps), { fontSize: 24, lineHeight: "28px" }),
+    body1: __assign(__assign({}, genericFontProps), { fontSize: 16, lineHeight: "24px" }),
+    body2: __assign(__assign({}, genericFontProps), { fontSize: 14, lineHeight: "22px" }),
+    button: __assign(__assign({}, genericFontProps), { fontSize: 16, fontWeight: 600, textTransform: "uppercase", lineHeight: "24px" }),
 };
 // const gutter = 24;
 var breakpoints = {

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { IButtonLinkComponentProps } from "./types";
+import { ILinkProps } from "./types";
 
-export const Link = styled.button<IButtonLinkComponentProps>`
+export const Link = styled.button<ILinkProps>`
   background-color: transparent;
   border: none;
   color: ${({ theme, disabled }) =>

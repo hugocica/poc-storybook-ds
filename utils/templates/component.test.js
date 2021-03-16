@@ -1,6 +1,6 @@
 module.exports = (componentName) => ({
   content: `import React from "react";
-import { renderWithProviders, screen } from "../setupTests";
+import { renderWithProviders, screen } from "setupTests";
 
 import ${componentName} from "./index";
 

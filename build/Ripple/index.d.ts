@@ -1,4 +1,4 @@
 /// <reference types="react" />
-import * as t from "./types";
-declare const Ripple: ({ duration }: t.IRipple) => JSX.Element;
+import { IRippleProps } from "./types";
+declare const Ripple: ({ duration }: IRippleProps) => JSX.Element;
 export default Ripple;
