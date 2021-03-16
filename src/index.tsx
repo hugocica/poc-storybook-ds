@@ -1,4 +1,9 @@
-import Button from "Button";
-import theme from "./theme";
+import theme from "theme";
 
-export { theme, Button };
+import Button from "Button";
+import ButtonLink from "Button/Link";
+import Icon from "Icon";
+import InputText from "Inputs/Text";
+import Typography from "Typography";
+
+export { theme, Button, ButtonLink, Icon, InputText, Typography };

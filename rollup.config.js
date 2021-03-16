@@ -3,6 +3,8 @@ import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import includePaths from "rollup-plugin-includepaths";
+import svg from "rollup-plugin-svg";
+import svgr from "@svgr/rollup";
 
 const packageJson = require("./package.json");
 
@@ -10,7 +12,7 @@ let includePathOptions = {
   include: {},
   paths: ["src"],
   external: [],
-  extensions: [".js", ".jsx", ".ts", ".tsx"],
+  extensions: [".js", ".jsx", ".ts", ".tsx", ".svg"],
 };
 
 export default {
@@ -33,5 +35,7 @@ export default {
     commonjs(),
     typescript({ useTsconfigDeclarationDir: true }),
     includePaths(includePathOptions),
+    svg(),
+    svgr(),
   ],
 };
