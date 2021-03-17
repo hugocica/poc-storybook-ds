@@ -446,11 +446,10 @@ function SvgPatients(props) {
   return /*#__PURE__*/createElement("svg", _extends$3({
     width: 22,
     height: 14,
-    fill: "none",
+    fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$3 || (_path$3 = /*#__PURE__*/createElement("path", {
-    d: "M15.5 8c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C4.33 8 0 9.08 0 11.25V14h22v-2.75C22 9.08 17.67 8 15.5 8zm-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75v1.25zm9 0H13v-1.25c0-.46-.2-.86-.52-1.22.88-.3 1.96-.53 3.02-.53 2.44 0 5 1.21 5 1.75v1.25zM6.5 7C8.43 7 10 5.43 10 3.5S8.43 0 6.5 0 3 1.57 3 3.5 4.57 7 6.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 5.5C17.43 7 19 5.43 19 3.5S17.43 0 15.5 0 12 1.57 12 3.5 13.57 7 15.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z",
-    fill: "#4C5867"
+    d: "M15.5 8c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C4.33 8 0 9.08 0 11.25V14h22v-2.75C22 9.08 17.67 8 15.5 8zm-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75v1.25zm9 0H13v-1.25c0-.46-.2-.86-.52-1.22.88-.3 1.96-.53 3.02-.53 2.44 0 5 1.21 5 1.75v1.25zM6.5 7C8.43 7 10 5.43 10 3.5S8.43 0 6.5 0 3 1.57 3 3.5 4.57 7 6.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 5.5C17.43 7 19 5.43 19 3.5S17.43 0 15.5 0 12 1.57 12 3.5 13.57 7 15.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"
   })));
 }
 
@@ -744,13 +743,13 @@ var SuffixContainer = styled.div(templateObject_4 || (templateObject_4 = __makeT
 var Input = styled.input(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme;
-    return css(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    border: none;\n    color: inherit;\n    font-weight: 300;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n  "], ["\n    border: none;\n    color: inherit;\n    font-weight: 300;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n  "])), theme.fonts.body1);
+    return css(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    font-weight: 300;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "], ["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    font-weight: 300;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "])), theme.fonts.body1);
 });
 var templateObject_1$1, templateObject_2$1, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
 
 var Text$1 = function (_a) {
-    var className = _a.className, Prefix = _a.prefix, Suffix = _a.suffix, rest = __rest(_a, ["className", "prefix", "suffix"]);
-    return (React.createElement(Container, { className: className },
+    var className = _a.className, Prefix = _a.prefix, Suffix = _a.suffix, style = _a.style, rest = __rest(_a, ["className", "prefix", "suffix", "style"]);
+    return (React.createElement(Container, { className: className, style: style },
         !!Prefix && React.createElement(PrefixContainer, null, Prefix),
         React.createElement(Input, __assign({}, rest)),
         !!Suffix && React.createElement(SuffixContainer, null, Suffix)));

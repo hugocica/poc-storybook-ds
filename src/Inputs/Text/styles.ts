@@ -28,6 +28,7 @@ export const SuffixContainer = styled.div`
 
 export const Input = styled.input`
   ${({ theme }) => css`
+    background-color: transparent;
     border: none;
     color: inherit;
     font-weight: 300;
@@ -38,6 +39,18 @@ export const Input = styled.input`
     &:active {
       border: none;
       outline: none;
+    }
+    ::placeholder {
+      color: inherit;
+      opacity: 0.4;
+    }
+    :-ms-input-placeholder {
+      color: inherit;
+      opacity: 0.4;
+    }
+    :-ms-input-placeholder {
+      color: inherit;
+      opacity: 0.4;
     }
   `}
 `;
