@@ -24,6 +24,7 @@ export type TColors =
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    borderRadius: { [key in keyof typeof borderRadius]: string };
     colors: {
       primary: TPrimary;
       secondary: TSecondary;
@@ -80,10 +81,7 @@ export const colors = {
   error: "rgb(207, 19, 34)",
   // cores primárias
   yellow100: "rgb(214, 222, 35)",
-  yellow60: "rgba(214, 222, 35, 0.6)",
-  yellow38: "rgba(214, 222, 35, 0.38)",
-  yellow12: "rgba(214, 222, 35, 0.12)",
-  yellow6: "rgba(214, 222, 35, 0.06)",
+
   green100: "rgb(0, 166, 156)",
   green60: "rgba(0, 166, 156, 0.6)",
   green38: "rgba(0, 166, 156, 0.38)",
@@ -177,9 +175,15 @@ const shadows = {
     "0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)",
 };
 
+const borderRadius = {
+  square: "4px",
+  circle: "50%",
+};
+
 const spacing = (number: number) => number * 8;
 
 export default {
+  borderRadius,
   colors,
   fonts,
   mediaQueries,
