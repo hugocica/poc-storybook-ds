@@ -84,6 +84,7 @@ var colors = {
         darkgrey: "#72859C",
         lightgrey: "#AEC0D1",
         lightergrey: "#D4D6E9",
+        lightergrey25: "rgba(212, 214, 233, 0.25)",
     },
     //old colors
     white60: "rgba(255, 255, 255, 0.6)",
@@ -100,10 +101,6 @@ var colors = {
     error: "rgb(207, 19, 34)",
     // cores primárias
     yellow100: "rgb(214, 222, 35)",
-    yellow60: "rgba(214, 222, 35, 0.6)",
-    yellow38: "rgba(214, 222, 35, 0.38)",
-    yellow12: "rgba(214, 222, 35, 0.12)",
-    yellow6: "rgba(214, 222, 35, 0.06)",
     green100: "rgb(0, 166, 156)",
     green60: "rgba(0, 166, 156, 0.6)",
     green38: "rgba(0, 166, 156, 0.38)",
@@ -155,13 +152,32 @@ var mediaQueries = {
 var shadows = {
     gray1: "0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)",
 };
+var borderRadius = {
+    square: "4px",
+    circle: "50%",
+};
 var spacing = function (number) { return number * 8; };
 var index$1 = {
+    borderRadius: borderRadius,
     colors: colors,
     fonts: fonts,
     mediaQueries: mediaQueries,
     shadows: shadows,
     spacing: spacing,
+};
+
+var Container$1 = styled__default['default'].div(templateObject_2$4 || (templateObject_2$4 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+    "\n"])), function (_a) {
+    var size = _a.size, theme = _a.theme, variant = _a.variant;
+    return styled.css(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "], ["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "])), theme.colors.neutrals.lightergrey, theme.borderRadius[variant], theme.colors.neutrals.darkestgrey, size, size, theme.fonts.body1);
+});
+var templateObject_1$5, templateObject_2$4;
+
+var Avatar = function (_a) {
+    var alt = _a.alt, src = _a.src, placeholder = _a.placeholder, _b = _a.size, size = _b === void 0 ? 40 : _b, _c = _a.variant, variant = _c === void 0 ? "square" : _c, rest = __rest(_a, ["alt", "src", "placeholder", "size", "variant"]);
+    // @todo: add validation to src/placeholder if both are images urls are valid
+    var content = React__default['default'].createElement("img", { alt: alt, src: src || placeholder });
+    return (React__default['default'].createElement(Container$1, __assign({ size: size, variant: variant }, rest), content));
 };
 
 var rippleAnimation = styled.keyframes(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"], ["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"])));
@@ -269,14 +285,7 @@ var handleTextColor = function (_a) {
 var handleBorderColor = function (_a) {
     var variant = _a.variant, disabled = _a.disabled, theme = _a.theme;
     if (disabled) {
-        switch (variant) {
-            case "primary":
-                return theme.colors.primary.green;
-            case "secondary":
-                return theme.colors.secondary.purple;
-            default:
-                return theme.colors.neutrals.lightergrey;
-        }
+        return "transparent";
     }
     switch (variant) {
         case "primary":
@@ -287,59 +296,49 @@ var handleBorderColor = function (_a) {
             return theme.colors.neutrals.lightgrey;
     }
 };
-var Button$1 = styled__default['default'].button(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  background-color: ", ";\n  border: ", ";\n  border-radius: 4px;\n  box-shadow: ", ";\n  color: ", ";\n  cursor: ", ";\n  /* padding: ", "; */\n  position: relative;\n  overflow: hidden;\n  height: ", ";\n  width: ", ";\n\n  ", ";\n\n  &:hover {\n    background-color: ", ";\n  }\n  &:focus,\n  &:active {\n    outline: none;\n  }\n\n  span.ripple {\n    position: absolute;\n    border-radius: 50%;\n    transform: scale(0);\n    animation: ripple 600ms linear;\n    background-color: rgba(255, 255, 255, 0.7);\n  }\n\n  @keyframes ripple {\n    to {\n      transform: scale(4);\n      opacity: 0;\n    }\n  }\n"], ["\n  background-color: ",
-    ";\n  border: ",
-    ";\n  border-radius: 4px;\n  box-shadow: ", ";\n  color: ",
-    ";\n  cursor: ", ";\n  /* padding: ",
-    "; */\n  position: relative;\n  overflow: hidden;\n  height: ",
-    ";\n  width: ",
-    ";\n\n  ", ";\n\n  &:hover {\n    background-color: ",
-    ";\n  }\n  &:focus,\n  &:active {\n    outline: none;\n  }\n\n  span.ripple {\n    position: absolute;\n    border-radius: 50%;\n    transform: scale(0);\n    animation: ripple 600ms linear;\n    background-color: rgba(255, 255, 255, 0.7);\n  }\n\n  @keyframes ripple {\n    to {\n      transform: scale(4);\n      opacity: 0;\n    }\n  }\n"])), function (_a) {
-    var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
-    return handleBGColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme });
-}, function (_a) {
-    var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
-    return "2px solid " + handleBorderColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme });
-}, function (_a) {
-    var theme = _a.theme, disabled = _a.disabled;
-    return !disabled && theme.shadows.gray1;
-}, function (_a) {
-    var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
-    return handleTextColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme });
-}, function (_a) {
-    var disabled = _a.disabled;
-    return (disabled ? "not-allowed" : "pointer");
-}, function (_a) {
-    var theme = _a.theme;
-    return theme.spacing(1) + "px " + theme.spacing(2) + "px";
-}, function (_a) {
-    var size = _a.size;
-    if (size === "small") {
-        return "25px";
-    }
-    return "35px";
-}, function (_a) {
-    var size = _a.size;
-    if (size === "small") {
-        return "60px";
-    }
-    return "120px";
-}, function (_a) {
-    var theme = _a.theme;
-    return theme.fonts.button;
-}, function (_a) {
-    var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
-    return handleBGColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme });
+var Button$1 = styled__default['default'].button(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+    "\n"])), function (_a) {
+    var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme, size = _a.size;
+    return styled.css(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n    background-color: ", ";\n    border: ", ";\n    border-radius: ", ";\n    box-shadow: ", ";\n    color: ", ";\n    cursor: ", ";\n    /* padding: ", "; */\n    position: relative;\n    overflow: hidden;\n    height: ", ";\n    width: ", ";\n\n    ", ";\n\n    &:hover {\n      background-color: ", ";\n    }\n    &:focus,\n    &:active {\n      outline: none;\n    }\n  "], ["\n    background-color: ", ";\n    border: ",
+        ";\n    border-radius: ", ";\n    box-shadow: ", ";\n    color: ", ";\n    cursor: ", ";\n    /* padding: ",
+        "; */\n    position: relative;\n    overflow: hidden;\n    height: ",
+        ";\n    width: ",
+        ";\n\n    ", ";\n\n    &:hover {\n      background-color: ",
+        ";\n    }\n    &:focus,\n    &:active {\n      outline: none;\n    }\n  "])), handleBGColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme }), "2px solid " + handleBorderColor({
+        variant: variant,
+        outlined: outlined,
+        disabled: disabled,
+        theme: theme,
+    }), theme.borderRadius.square, !disabled && theme.shadows.gray1, handleTextColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme }), disabled ? "not-allowed" : "pointer", function (_a) {
+        var theme = _a.theme;
+        return theme.spacing(1) + "px " + theme.spacing(2) + "px";
+    }, function () {
+        if (size === "small") {
+            return "25px";
+        }
+        return "35px";
+    }, function () {
+        if (size === "small") {
+            return "60px";
+        }
+        return "120px";
+    }, function (_a) {
+        var theme = _a.theme;
+        return theme.fonts.button;
+    }, function (_a) {
+        var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
+        return handleBGColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme });
+    });
 });
-var LoadingContainer = styled__default['default'].div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  position: absolute;\n"], ["\n  position: absolute;\n"])));
-var templateObject_1$3, templateObject_2$2;
+var LoadingContainer = styled__default['default'].div(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n  position: absolute;\n"], ["\n  position: absolute;\n"])));
+var templateObject_1$3, templateObject_2$2, templateObject_3$1;
 
 var Button = function (_a) {
     var children = _a.children, disabled = _a.disabled, isLoading = _a.isLoading, outlined = _a.outlined, _b = _a.type, type = _b === void 0 ? "button" : _b, _c = _a.size, size = _c === void 0 ? "medium" : _c, variant = _a.variant, rest = __rest(_a, ["children", "disabled", "isLoading", "outlined", "type", "size", "variant"]);
     return (React__default['default'].createElement(Button$1, __assign({ type: type, role: "button", disabled: isLoading || disabled, size: size, outlined: outlined, variant: variant }, rest),
         children,
         isLoading ? (React__default['default'].createElement(LoadingContainer, null)) : null,
-        React__default['default'].createElement(Ripple, null)));
+        !isLoading && !disabled && React__default['default'].createElement(Ripple, null)));
 };
 
 var Link = styled__default['default'].button(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  background-color: transparent;\n  border: none;\n  color: ", ";\n  cursor: pointer;\n  text-decoration: underline;\n\n  ", ";\n  &:focus,\n  &:active {\n    border: none;\n    outline: none;\n  }\n"], ["\n  background-color: transparent;\n  border: none;\n  color: ",
@@ -355,6 +354,13 @@ var templateObject_1$2;
 var ButtonLink = function (_a) {
     var children = _a.children, _b = _a.element, element = _b === void 0 ? "button" : _b; _a.to; var rest = __rest(_a, ["children", "element", "to"]);
     return (React__default['default'].createElement(Link, __assign({ as: element }, rest), children));
+};
+
+var findColorInTheme = function (color) {
+    return (colors.neutrals[color] ||
+        colors.system[color] ||
+        colors.secondary[color] ||
+        colors.primary[color]);
 };
 
 var _path$9;
@@ -729,19 +735,16 @@ var iconDictionary = {
 var index = (function (_a) {
     var name = _a.name, fill = _a.fill, height = _a.height, width = _a.width, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, _c = _a.size, size = _c === void 0 ? 21 : _c, rest = __rest(_a, ["name", "fill", "height", "width", "color", "size"]);
     var Icon = iconDictionary[name];
-    var colorToFill = colors.neutrals[color] ||
-        colors.system[color] ||
-        colors.secondary[color] ||
-        colors.primary[color];
+    var colorToFill = findColorInTheme(color);
     return Icon ? (React__default['default'].createElement(Icon, __assign({ role: "img", "aria-label": name, fill: fill ? fill : colorToFill, width: width || size, height: height || size }, rest))) : null;
 });
 
 var Container = styled__default['default'].div(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
-    var theme = _a.theme;
-    return styled.css(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: 4px;\n    color: ", ";\n    display: inline-flex;\n    height: 40px;\n    padding: ", "px ", "px;\n  "], ["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: 4px;\n    color: ", ";\n    display: inline-flex;\n    height: 40px;\n    padding: ", "px ", "px;\n  "])), theme.colors.neutrals.lightgrey, theme.colors.neutrals.darkestgrey, theme.spacing(1), theme.spacing(2));
+    var theme = _a.theme, color = _a.color;
+    return styled.css(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    height: 40px;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n  "], ["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    height: 40px;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n  "])), theme.colors.neutrals.lightgrey, theme.borderRadius.square, findColorInTheme(color), theme.spacing(1), theme.spacing(2), findColorInTheme(color));
 });
-var PrefixContainer = styled__default['default'].div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"], ["\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"])), function (_a) {
+var PrefixContainer = styled__default['default'].div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"], ["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"])), function (_a) {
     var theme = _a.theme;
     return theme.spacing(1);
 });
@@ -757,8 +760,8 @@ var Input = styled__default['default'].input(templateObject_6 || (templateObject
 var templateObject_1$1, templateObject_2$1, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
 
 var Text$1 = function (_a) {
-    var className = _a.className, Prefix = _a.prefix, Suffix = _a.suffix, style = _a.style, rest = __rest(_a, ["className", "prefix", "suffix", "style"]);
-    return (React__default['default'].createElement(Container, { className: className, style: style },
+    var className = _a.className, Prefix = _a.prefix, Suffix = _a.suffix, style = _a.style, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, rest = __rest(_a, ["className", "prefix", "suffix", "style", "color"]);
+    return (React__default['default'].createElement(Container, { className: className, style: style, color: color },
         !!Prefix && React__default['default'].createElement(PrefixContainer, null, Prefix),
         React__default['default'].createElement(Input, __assign({}, rest)),
         !!Suffix && React__default['default'].createElement(SuffixContainer, null, Suffix)));
@@ -767,8 +770,8 @@ var Text$1 = function (_a) {
 var Text = styled__default['default'].p(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme, type = _a.type, color = _a.color;
-    return styled.css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    font-weight: 300;\n    color: ", ";\n\n    ", ";\n  "], ["\n    font-weight: 300;\n    color: ",
-        ";\n\n    ", ";\n  "])), theme.colors.neutrals[color] ||
+    return styled.css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    color: ", ";\n    font-weight: 300;\n    margin: 0;\n\n    ", ";\n  "], ["\n    color: ",
+        ";\n    font-weight: 300;\n    margin: 0;\n\n    ", ";\n  "])), theme.colors.neutrals[color] ||
         theme.colors.system[color] ||
         theme.colors.secondary[color] ||
         theme.colors.primary[color], theme.fonts[type]);
@@ -776,10 +779,11 @@ var Text = styled__default['default'].p(templateObject_2 || (templateObject_2 = 
 var templateObject_1, templateObject_2;
 
 var Typography = function (_a) {
-    _a.children; var _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, _c = _a.type, type = _c === void 0 ? "body1" : _c, _d = _a.variant, variant = _d === void 0 ? "p" : _d, rest = __rest(_a, ["children", "color", "type", "variant"]);
-    return (React__default['default'].createElement(Text, __assign({ as: variant, color: color, type: type }, rest), "Typography"));
+    var children = _a.children, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, _c = _a.type, type = _c === void 0 ? "body1" : _c, _d = _a.variant, variant = _d === void 0 ? "p" : _d, rest = __rest(_a, ["children", "color", "type", "variant"]);
+    return (React__default['default'].createElement(Text, __assign({ as: variant, color: color, type: type }, rest), children));
 };
 
+exports.Avatar = Avatar;
 exports.Button = Button;
 exports.ButtonLink = ButtonLink;
 exports.Icon = index;
