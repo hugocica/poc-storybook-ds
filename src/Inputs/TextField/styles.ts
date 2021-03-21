@@ -1,35 +1,52 @@
-import styled, { css } from "styled-components";
-import Typography from "../../Typography";
-import { findColorInTheme } from "../../theme/helper";
-import { ITextFieldProps } from "./types";
+import styled, { css } from 'styled-components';
+import Typography from '../../Typography';
+import { findColorInTheme } from '../../theme/helper';
+import { ITextFieldProps } from './types';
 
 export const Label = styled(Typography).attrs(() => ({
-  variant: "label",
-  type: "caption",
+  variant: 'label',
+  type: 'caption',
 }))``;
 
 export const InputContent = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
 `;
 
-export const Container = styled.div<Pick<ITextFieldProps, "color">>`
-  ${({ theme, color }) => css`
+type TContainerProps = Pick<ITextFieldProps, 'color' | 'outlined'>;
+
+export const Container = styled.div<TContainerProps>`
+  ${({ theme, color, outlined }) => css`
     align-items: center;
-    border: 1px solid ${findColorInTheme(color, 0.4)};
+    border: ${outlined && `1px solid ${findColorInTheme(color, 0.4)}`};
+    background-color: ${!outlined && findColorInTheme(color)};
     border-radius: ${theme.borderRadius.square};
-    color: ${findColorInTheme(color)};
+    color: ${outlined
+      ? findColorInTheme(color)
+      : theme.colors.neutrals.darkestgrey};
     display: inline-flex;
     padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+    width: 400px;
 
     svg {
-      fill: ${findColorInTheme(color)};
+      fill: ${outlined
+        ? findColorInTheme(color)
+        : theme.colors.neutrals.darkestgrey};
     }
     ${Label} {
-      color: ${findColorInTheme(color)};
+      color: ${outlined
+        ? findColorInTheme(color)
+        : theme.colors.neutrals.darkestgrey};
     }
     * {
       box-sizing: border-box;
+    }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus {
+      background-color: transparent !important;
+      color: inherit;
     }
   `}
 `;

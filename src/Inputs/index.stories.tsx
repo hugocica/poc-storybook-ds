@@ -1,17 +1,22 @@
-import React from "react";
+import React from 'react';
 
-import Icon from "../Icon";
-import TextFieldCmp from "./TextField";
-import PasswordCmp from "./Password";
+import Icon from '../Icon';
+import TextFieldCmp from './TextField';
+import PasswordCmp from './Password';
 
 export default {
-  title: "Inputs",
+  title: 'Inputs',
 };
 
 export const TextField = () => (
   <>
     <div>
-      <TextFieldCmp label="login" placeholder="digite aqui" />
+      <TextFieldCmp
+        label="login"
+        placeholder="digite aqui"
+        color="darkestgrey"
+        outlined
+      />
     </div>
     <div>
       <TextFieldCmp
@@ -24,6 +29,11 @@ export const TextField = () => (
 
 export const Password = () => (
   <div>
-    <PasswordCmp label="senha" placeholder="digite aqui" />
+    <PasswordCmp
+      label="senha"
+      placeholder="digite aqui"
+      color="darkestgrey"
+      outlined
+    />
   </div>
 );

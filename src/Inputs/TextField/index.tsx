@@ -1,18 +1,24 @@
-import React from "react";
+import React from 'react';
 
-import * as s from "./styles";
-import { TTextFieldProps } from "./types";
+import * as s from './styles';
+import { TTextFieldProps } from './types';
 
 const TextField = ({
   className,
   label,
+  outlined,
   prefix: Prefix,
   suffix: Suffix,
   style,
-  color = "darkestgrey",
+  color = 'white',
   ...rest
 }: TTextFieldProps) => (
-  <s.Container className={className} style={style} color={color}>
+  <s.Container
+    className={className}
+    style={style}
+    color={color}
+    outlined={outlined}
+  >
     {!!Prefix && <s.PrefixContainer>{Prefix}</s.PrefixContainer>}
     <s.InputContent>
       {label && <s.Label>{label}</s.Label>}
