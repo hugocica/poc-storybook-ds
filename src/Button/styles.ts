@@ -1,5 +1,5 @@
 import React from "react";
-import styled, { DefaultTheme } from "styled-components";
+import styled, { DefaultTheme, css } from "styled-components";
 // import ButtonMUI, { ButtonProps } from '@material-ui/core/Button';
 import { TButtonProps, IButtonProps } from "./types";
 
@@ -17,7 +17,7 @@ const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
       case "primary":
         return theme.colors.primary.green40;
       case "secondary":
-        return theme.colors.secondary.purple40;
+        return theme.colors.primary.gray40;
       default:
         return theme.colors.neutrals.lightergrey;
     }
@@ -27,7 +27,7 @@ const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
     case "primary":
       return theme.colors.primary.green;
     case "secondary":
-      return theme.colors.secondary.purple;
+      return theme.colors.primary.gray;
     default:
       return theme.colors.neutrals.lightgrey;
   }
@@ -39,7 +39,7 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
       case "primary":
         return theme.colors.primary.green40;
       case "secondary":
-        return theme.colors.secondary.purple40;
+        return theme.colors.primary.gray40;
       default:
         return theme.colors.neutrals.lightgrey;
     }
@@ -50,93 +50,75 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
       case "primary":
         return theme.colors.primary.green;
       case "secondary":
-        return theme.colors.secondary.purple;
+        return theme.colors.primary.gray;
       default:
-        return theme.colors.neutrals.darkgrey;
+        return theme.colors.neutrals.darkestgrey;
     }
   }
 
   return !variant
-    ? theme.colors.neutrals.darkgrey
+    ? theme.colors.neutrals.darkestgrey
     : theme.colors.neutrals.white;
 };
 
 const handleBorderColor = ({ variant, disabled, theme }: TButton) => {
   if (disabled) {
-    switch (variant) {
-      case "primary":
-        return theme.colors.primary.green;
-      case "secondary":
-        return theme.colors.secondary.purple;
-      default:
-        return theme.colors.neutrals.lightergrey;
-    }
+    return "transparent";
   }
 
   switch (variant) {
     case "primary":
       return theme.colors.primary.green;
     case "secondary":
-      return theme.colors.secondary.purple;
+      return theme.colors.primary.gray;
     default:
       return theme.colors.neutrals.lightgrey;
   }
 };
 
 export const Button = styled.button<IButtonProps>`
-  background-color: ${({ variant, outlined, disabled, theme }) =>
-    handleBGColor({ variant, outlined, disabled, theme })};
-  border: ${({ variant, outlined, disabled, theme }) =>
-    `2px solid ${handleBorderColor({ variant, outlined, disabled, theme })}`};
-  border-radius: 4px;
-  box-shadow: ${({ theme, disabled }) => !disabled && theme.shadows.gray1};
-  color: ${({ variant, outlined, disabled, theme }) =>
-    handleTextColor({ variant, outlined, disabled, theme })};
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
-  /* padding: ${({ theme }) =>
-    `${theme.spacing(1)}px ${theme.spacing(2)}px`}; */
-  position: relative;
-  overflow: hidden;
-  height: ${({ size }) => {
-    if (size === "small") {
-      return "25px";
+  ${({ variant, outlined, disabled, theme, size }) => css`
+    background-color: ${handleBGColor({ variant, outlined, disabled, theme })};
+    border: ${`2px solid ${handleBorderColor({
+      variant,
+      outlined,
+      disabled,
+      theme,
+    })}`};
+    border-radius: ${theme.borderRadius.square};
+    box-shadow: ${!disabled && theme.shadows.gray1};
+    color: ${handleTextColor({ variant, outlined, disabled, theme })};
+    cursor: ${disabled ? "not-allowed" : "pointer"};
+    /* padding: ${({ theme }) =>
+      `${theme.spacing(1)}px ${theme.spacing(2)}px`}; */
+    position: relative;
+    overflow: hidden;
+    height: ${() => {
+      if (size === "small") {
+        return "25px";
+      }
+
+      return "35px";
+    }};
+    width: ${() => {
+      if (size === "small") {
+        return "60px";
+      }
+
+      return "120px";
+    }};
+
+    ${({ theme }) => theme.fonts.button};
+
+    &:hover {
+      background-color: ${({ variant, outlined, disabled, theme }) =>
+        handleBGColor({ variant, outlined, disabled, theme })};
     }
-
-    return "35px";
-  }};
-  width: ${({ size }) => {
-    if (size === "small") {
-      return "60px";
+    &:focus,
+    &:active {
+      outline: none;
     }
-
-    return "120px";
-  }};
-
-  ${({ theme }) => theme.fonts.button};
-
-  &:hover {
-    background-color: ${({ variant, outlined, disabled, theme }) =>
-      handleBGColor({ variant, outlined, disabled, theme })};
-  }
-  &:focus,
-  &:active {
-    outline: none;
-  }
-
-  span.ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 600ms linear;
-    background-color: rgba(255, 255, 255, 0.7);
-  }
-
-  @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
-  }
+  `}
 `;
 
 export const LoadingContainer = styled.div`

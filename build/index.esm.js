@@ -110,6 +110,7 @@ var colors = {
 };
 var genericFontProps = {
     fontFamily: "Space Grotesk",
+    fontWeight: 400,
 };
 var fonts = {
     heading1: __assign(__assign({}, genericFontProps), { fontSize: 68, lineHeight: "76px" }),
@@ -119,9 +120,10 @@ var fonts = {
     heading5: __assign(__assign({}, genericFontProps), { fontSize: 24, lineHeight: "28px" }),
     body1: __assign(__assign({}, genericFontProps), { fontSize: 16, lineHeight: "24px" }),
     body2: __assign(__assign({}, genericFontProps), { fontSize: 14, lineHeight: "22px" }),
+    caption: __assign(__assign({}, genericFontProps), { fontSize: 14, lineHeight: "16px" }),
     button: __assign(__assign({}, genericFontProps), { fontSize: 16, fontWeight: 600, textTransform: "uppercase", lineHeight: "24px" }),
 };
-// const gutter = 24;
+var gutter = 8;
 var breakpoints = {
     xl: 1440,
     lg: 1280,
@@ -147,7 +149,7 @@ var borderRadius = {
     square: "4px",
     circle: "50%",
 };
-var spacing = function (number) { return number * 8; };
+var spacing = function (number) { return number * gutter; };
 var index$1 = {
     borderRadius: borderRadius,
     colors: colors,
@@ -233,7 +235,7 @@ var handleBGColor = function (_a) {
             case "primary":
                 return theme.colors.primary.green40;
             case "secondary":
-                return theme.colors.secondary.purple40;
+                return theme.colors.primary.gray40;
             default:
                 return theme.colors.neutrals.lightergrey;
         }
@@ -242,7 +244,7 @@ var handleBGColor = function (_a) {
         case "primary":
             return theme.colors.primary.green;
         case "secondary":
-            return theme.colors.secondary.purple;
+            return theme.colors.primary.gray;
         default:
             return theme.colors.neutrals.lightgrey;
     }
@@ -254,7 +256,7 @@ var handleTextColor = function (_a) {
             case "primary":
                 return theme.colors.primary.green40;
             case "secondary":
-                return theme.colors.secondary.purple40;
+                return theme.colors.primary.gray40;
             default:
                 return theme.colors.neutrals.lightgrey;
         }
@@ -264,13 +266,13 @@ var handleTextColor = function (_a) {
             case "primary":
                 return theme.colors.primary.green;
             case "secondary":
-                return theme.colors.secondary.purple;
+                return theme.colors.primary.gray;
             default:
-                return theme.colors.neutrals.darkgrey;
+                return theme.colors.neutrals.darkestgrey;
         }
     }
     return !variant
-        ? theme.colors.neutrals.darkgrey
+        ? theme.colors.neutrals.darkestgrey
         : theme.colors.neutrals.white;
 };
 var handleBorderColor = function (_a) {
@@ -282,7 +284,7 @@ var handleBorderColor = function (_a) {
         case "primary":
             return theme.colors.primary.green;
         case "secondary":
-            return theme.colors.secondary.purple;
+            return theme.colors.primary.gray;
         default:
             return theme.colors.neutrals.lightgrey;
     }
@@ -347,25 +349,61 @@ var ButtonLink = function (_a) {
     return (React.createElement(Link, __assign({ as: element }, rest), children));
 };
 
-var findColorInTheme = function (color) {
-    return (colors.neutrals[color] ||
+var hexToRgb = function (hex) {
+    // if hex has only 3 codes, duplicate. ex: #fab => #ffaabb
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    var newHex = hex.replace(shorthandRegex, function (m, r, g, b) { return r + r + g + g + b + b; });
+    // result must be 6 codes and is separated in 3 groups (red, green and blue)
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(newHex);
+    // each group will be transformed to an integer (base 10) and will be add to the rgb format
+    // if result dont exists, the color will return null
+    return result
+        ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16),
+        }
+        : null;
+};
+var rgba = function (hex, alpha) {
+    var color = hexToRgb(hex);
+    return "rgba(" + (color === null || color === void 0 ? void 0 : color.r) + ", " + (color === null || color === void 0 ? void 0 : color.g) + ", " + (color === null || color === void 0 ? void 0 : color.b) + ", " + alpha + ")";
+};
+var findColorInTheme = function (color, opacity) {
+    if (opacity === void 0) { opacity = 1; }
+    return rgba(colors.neutrals[color] ||
         colors.system[color] ||
         colors.secondary[color] ||
-        colors.primary[color]);
+        colors.primary[color], opacity);
 };
+
+var _path$a;
+
+function _extends$a() { _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$a.apply(this, arguments); }
+
+function SvgArrowDown(props) {
+  return /*#__PURE__*/createElement("svg", _extends$a({
+    width: 12,
+    height: 8,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$a || (_path$a = /*#__PURE__*/createElement("path", {
+    d: "M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6L1.41 0z"
+  })));
+}
 
 var _path$9;
 
 function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
 
-function SvgArrowDown(props) {
+function SvgArrowLeft(props) {
   return /*#__PURE__*/createElement("svg", _extends$9({
-    width: 12,
-    height: 8,
+    width: 8,
+    height: 12,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$9 || (_path$9 = /*#__PURE__*/createElement("path", {
-    d: "M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6L1.41 0z"
+    d: "M7.41 1.41L2.83 6l4.58 4.59L6 12 0 6l6-6 1.41 1.41z"
   })));
 }
 
@@ -373,14 +411,14 @@ var _path$8;
 
 function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
 
-function SvgArrowLeft(props) {
+function SvgArrowRight(props) {
   return /*#__PURE__*/createElement("svg", _extends$8({
     width: 8,
     height: 12,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$8 || (_path$8 = /*#__PURE__*/createElement("path", {
-    d: "M7.41 1.41L2.83 6l4.58 4.59L6 12 0 6l6-6 1.41 1.41z"
+    d: "M0 10.59L4.58 6 0 1.41 1.41 0l6 6-6 6L0 10.59z"
   })));
 }
 
@@ -388,14 +426,14 @@ var _path$7;
 
 function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
 
-function SvgArrowRight(props) {
+function SvgArrowUp(props) {
   return /*#__PURE__*/createElement("svg", _extends$7({
-    width: 8,
-    height: 12,
+    width: 12,
+    height: 8,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$7 || (_path$7 = /*#__PURE__*/createElement("path", {
-    d: "M0 10.59L4.58 6 0 1.41 1.41 0l6 6-6 6L0 10.59z"
+    d: "M10.59 7.41L6 2.83 1.41 7.41 0 6l6-6 6 6-1.41 1.41z"
   })));
 }
 
@@ -403,14 +441,14 @@ var _path$6;
 
 function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
 
-function SvgArrowUp(props) {
+function SvgClose(props) {
   return /*#__PURE__*/createElement("svg", _extends$6({
-    width: 12,
-    height: 8,
+    width: 14,
+    height: 14,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$6 || (_path$6 = /*#__PURE__*/createElement("path", {
-    d: "M10.59 7.41L6 2.83 1.41 7.41 0 6l6-6 6 6-1.41 1.41z"
+    d: "M8.46 7L14 12.54V14h-1.46L7 8.46 1.46 14H0v-1.46L5.54 7 0 1.46V0h1.46L7 5.54 12.54 0H14v1.46L8.46 7z"
   })));
 }
 
@@ -418,14 +456,14 @@ var _path$5;
 
 function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
 
-function SvgClose(props) {
+function SvgHidden(props) {
   return /*#__PURE__*/createElement("svg", _extends$5({
-    width: 14,
-    height: 14,
+    width: 22,
+    height: 18,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$5 || (_path$5 = /*#__PURE__*/createElement("path", {
-    d: "M8.46 7L14 12.54V14h-1.46L7 8.46 1.46 14H0v-1.46L5.54 7 0 1.46V0h1.46L7 5.54 12.54 0H14v1.46L8.46 7z"
+    d: "M1 1.27L2.28 0 19 16.72 17.73 18l-3.08-3.08c-1.15.38-2.37.58-3.65.58-5 0-9.27-3.11-11-7.5.69-1.76 1.79-3.31 3.19-4.54L1 1.27zM11 5a3 3 0 012.83 4L10 5.17A3 3 0 0111 5zm0-4.5c5 0 9.27 3.11 11 7.5a11.79 11.79 0 01-4 5.19l-1.42-1.43A9.862 9.862 0 0019.82 8 9.821 9.821 0 0011 2.5c-1.09 0-2.16.18-3.16.5L6.3 1.47C7.74.85 9.33.5 11 .5zM2.18 8A9.821 9.821 0 0011 13.5c.69 0 1.37-.07 2-.21L10.72 11A3.064 3.064 0 018 8.28L4.6 4.87C3.61 5.72 2.78 6.78 2.18 8z"
   })));
 }
 
@@ -716,6 +754,7 @@ var iconDictionary = {
     "arrow-right": SvgArrowRight,
     "arrow-up": SvgArrowUp,
     close: SvgClose,
+    hidden: SvgHidden,
     notification: SvgNotification,
     patients: SvgPatients,
     print: SvgPrint,
@@ -730,49 +769,52 @@ var index = (function (_a) {
     return Icon ? (React.createElement(Icon, __assign({ role: "img", "aria-label": name, fill: fill ? fill : colorToFill, width: width || size, height: height || size }, rest))) : null;
 });
 
-var Container = styled.div(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
-    "\n"])), function (_a) {
-    var theme = _a.theme, color = _a.color;
-    return css(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    height: 40px;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n  "], ["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    height: 40px;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n  "])), theme.colors.neutrals.lightgrey, theme.borderRadius.square, findColorInTheme(color), theme.spacing(1), theme.spacing(2), findColorInTheme(color));
-});
-var PrefixContainer = styled.div(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"], ["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"])), function (_a) {
-    var theme = _a.theme;
-    return theme.spacing(1);
-});
-var SuffixContainer = styled.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  margin-left: ", "px;\n"], ["\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  margin-left: ", "px;\n"])), function (_a) {
-    var theme = _a.theme;
-    return theme.spacing(1);
-});
-var Input = styled.input(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
-    "\n"])), function (_a) {
-    var theme = _a.theme;
-    return css(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    font-weight: 300;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "], ["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    font-weight: 300;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "])), theme.fonts.body1);
-});
-var templateObject_1$1, templateObject_2$1, templateObject_3, templateObject_4, templateObject_5, templateObject_6;
-
-var Text$1 = function (_a) {
-    var className = _a.className, Prefix = _a.prefix, Suffix = _a.suffix, style = _a.style, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, rest = __rest(_a, ["className", "prefix", "suffix", "style", "color"]);
-    return (React.createElement(Container, { className: className, style: style, color: color },
-        !!Prefix && React.createElement(PrefixContainer, null, Prefix),
-        React.createElement(Input, __assign({}, rest)),
-        !!Suffix && React.createElement(SuffixContainer, null, Suffix)));
-};
-
-var Text = styled.p(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+var Text = styled.p(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme, type = _a.type, color = _a.color;
-    return css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    color: ", ";\n    font-weight: 300;\n    margin: 0;\n\n    ", ";\n  "], ["\n    color: ",
-        ";\n    font-weight: 300;\n    margin: 0;\n\n    ", ";\n  "])), theme.colors.neutrals[color] ||
-        theme.colors.system[color] ||
-        theme.colors.secondary[color] ||
-        theme.colors.primary[color], theme.fonts[type]);
+    return css(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    color: ", ";\n    margin: 0;\n\n    ", ";\n  "], ["\n    color: ", ";\n    margin: 0;\n\n    ", ";\n  "])), findColorInTheme(color), theme.fonts[type]);
 });
-var templateObject_1, templateObject_2;
+var templateObject_1$1, templateObject_2$1;
 
 var Typography = function (_a) {
     var children = _a.children, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, _c = _a.type, type = _c === void 0 ? "body1" : _c, _d = _a.variant, variant = _d === void 0 ? "p" : _d, rest = __rest(_a, ["children", "color", "type", "variant"]);
     return (React.createElement(Text, __assign({ as: variant, color: color, type: type }, rest), children));
 };
 
-export { Avatar, Button, ButtonLink, index as Icon, Text$1 as InputText, Typography, index$1 as theme };
+var Label = styled(Typography).attrs(function () { return ({
+    variant: "label",
+    type: "caption",
+}); })(templateObject_1 || (templateObject_1 = __makeTemplateObject([""], [""])));
+var InputContent = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n"], ["\n  display: flex;\n  flex-direction: column;\n"])));
+var Container = styled.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+    "\n"])), function (_a) {
+    var theme = _a.theme, color = _a.color;
+    return css(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n    ", " {\n      color: ", ";\n    }\n    * {\n      box-sizing: border-box;\n    }\n  "], ["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n    ", " {\n      color: ", ";\n    }\n    * {\n      box-sizing: border-box;\n    }\n  "])), findColorInTheme(color, 0.4), theme.borderRadius.square, findColorInTheme(color), theme.spacing(1), theme.spacing(2), findColorInTheme(color), Label, findColorInTheme(color));
+});
+var PrefixContainer = styled.div(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"], ["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"])), function (_a) {
+    var theme = _a.theme;
+    return theme.spacing(1);
+});
+var SuffixContainer = styled.div(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  margin-left: ", "px;\n"], ["\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  margin-left: ", "px;\n"])), function (_a) {
+    var theme = _a.theme;
+    return theme.spacing(1);
+});
+var Input = styled.input(templateObject_8 || (templateObject_8 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+    "\n"])), function (_a) {
+    var theme = _a.theme;
+    return css(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    height: 22px;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "], ["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    height: 22px;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "])), theme.fonts.body1);
+});
+var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
+
+var TextField = function (_a) {
+    var className = _a.className, label = _a.label, Prefix = _a.prefix, Suffix = _a.suffix, style = _a.style, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, rest = __rest(_a, ["className", "label", "prefix", "suffix", "style", "color"]);
+    return (React.createElement(Container, { className: className, style: style, color: color },
+        !!Prefix && React.createElement(PrefixContainer, null, Prefix),
+        React.createElement(InputContent, null,
+            label && React.createElement(Label, null, label),
+            React.createElement(Input, __assign({}, rest))),
+        !!Suffix && React.createElement(SuffixContainer, null, Suffix)));
+};
+
+export { Avatar, Button, ButtonLink, index as Icon, TextField as InputText, Typography, index$1 as theme };
 //# sourceMappingURL=index.esm.js.map

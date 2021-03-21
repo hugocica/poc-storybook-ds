@@ -1,19 +1,42 @@
 import styled, { css } from "styled-components";
+import Typography from "../../Typography";
+import { findColorInTheme } from "../../theme/helper";
+import { ITextFieldProps } from "./types";
 
-export const Container = styled.div`
-  ${({ theme }) => css`
+export const Label = styled(Typography).attrs(() => ({
+  variant: "label",
+  type: "caption",
+}))``;
+
+export const InputContent = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Container = styled.div<Pick<ITextFieldProps, "color">>`
+  ${({ theme, color }) => css`
     align-items: center;
-    border: 1px solid ${theme.colors.neutrals.lightgrey};
-    border-radius: 4px;
-    color: ${theme.colors.neutrals.darkestgrey};
+    border: 1px solid ${findColorInTheme(color, 0.4)};
+    border-radius: ${theme.borderRadius.square};
+    color: ${findColorInTheme(color)};
     display: inline-flex;
-    height: 40px;
     padding: ${theme.spacing(1)}px ${theme.spacing(2)}px;
+
+    svg {
+      fill: ${findColorInTheme(color)};
+    }
+    ${Label} {
+      color: ${findColorInTheme(color)};
+    }
+    * {
+      box-sizing: border-box;
+    }
   `}
 `;
 
 export const PrefixContainer = styled.div`
   align-items: center;
+  color: inherit;
   display: flex;
   justify-content: center;
   margin-right: ${({ theme }) => theme.spacing(1)}px;
@@ -31,7 +54,7 @@ export const Input = styled.input`
     background-color: transparent;
     border: none;
     color: inherit;
-    font-weight: 300;
+    height: 22px;
     outline: none;
     ${theme.fonts.body1};
 

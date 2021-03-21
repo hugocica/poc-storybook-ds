@@ -1,7 +1,7 @@
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import typescript from "rollup-plugin-typescript2";
+import typescript from "@rollup/plugin-typescript";
 import includePaths from "rollup-plugin-includepaths";
 import svg from "rollup-plugin-svg";
 import svgr from "@svgr/rollup";
@@ -33,7 +33,7 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript({ useTsconfigDeclarationDir: true }),
+    typescript(),
     includePaths(includePathOptions),
     svg(),
     svgr(),

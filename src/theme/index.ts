@@ -64,6 +64,7 @@ export const colors = {
     darkgrey: "#72859C",
     lightgrey: "#AEC0D1",
     lightergrey: "#D4D6E9",
+    lightergrey25: "rgba(212, 214, 233, 0.25)",
   },
 
   //old colors
@@ -101,6 +102,7 @@ export const colors = {
 
 export const genericFontProps = {
   fontFamily: "Space Grotesk",
+  fontWeight: 400,
 };
 
 export const fonts = {
@@ -139,6 +141,11 @@ export const fonts = {
     fontSize: 14,
     lineHeight: "22px",
   },
+  caption: {
+    ...genericFontProps,
+    fontSize: 14,
+    lineHeight: "16px",
+  },
   button: {
     ...genericFontProps,
     fontSize: 16,
@@ -148,7 +155,7 @@ export const fonts = {
   },
 };
 
-// const gutter = 24;
+const gutter = 8;
 
 const breakpoints = {
   xl: 1440,
@@ -180,7 +187,7 @@ const borderRadius = {
   circle: "50%",
 };
 
-const spacing = (number: number) => number * 8;
+const spacing = (number: number) => number * gutter;
 
 export default {
   borderRadius,

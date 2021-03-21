@@ -1,6 +1,5 @@
-import React from "react";
-
-import { colors as themeColors } from "../theme";
+import React from 'react';
+import { findColorInTheme } from "../theme/helper";
 
 import { IIconProps, iconDictionary } from "./types";
 
@@ -14,12 +13,7 @@ export default ({
   ...rest
 }: IIconProps & React.SVGAttributes<SVGElement>) => {
   const Icon = iconDictionary[name];
-
-  const colorToFill =
-    themeColors.neutrals[color] ||
-    themeColors.system[color] ||
-    themeColors.secondary[color] ||
-    themeColors.primary[color];
+  const colorToFill = findColorInTheme(color);
 
   return Icon ? (
     <Icon

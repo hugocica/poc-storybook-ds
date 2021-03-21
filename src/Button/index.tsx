@@ -32,7 +32,7 @@ const Button: React.FC<TButtonProps> = ({
           {/* <LoadingSpinner color="darkblue" size={24} /> */}
         </s.LoadingContainer>
       ) : null}
-      <Ripple />
+      {!isLoading && !disabled && <Ripple />}
     </s.Button>
   );
 };

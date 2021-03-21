@@ -10,6 +10,7 @@ export const Container = styled.div<Pick<IAvatarProps, "size" | "variant">>`
     display: flex;
     justify-content: center;
     height: ${size}px;
+    overflow: hidden;
     width: ${size}px;
 
     ${theme.fonts.body1};

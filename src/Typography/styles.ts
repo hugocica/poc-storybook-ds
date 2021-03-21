@@ -1,13 +1,11 @@
 import styled, { css } from "styled-components";
+import { findColorInTheme } from "../theme/helper";
 import { ITypographyProps } from "./types";
 
 export const Text = styled.p<ITypographyProps>`
   ${({ theme, type, color }) => css`
-    font-weight: 300;
-    color: ${theme.colors.neutrals[color] ||
-    theme.colors.system[color] ||
-    theme.colors.secondary[color] ||
-    theme.colors.primary[color]};
+    color: ${findColorInTheme(color)};
+    margin: 0;
 
     ${theme.fonts[type]};
   `}

@@ -11,7 +11,7 @@ const Typography: React.FC<ITypographyProps> = ({
   ...rest
 }) => (
   <s.Text as={variant} color={color} type={type} {...rest}>
-    Typography
+    {children}
   </s.Text>
 );
 
