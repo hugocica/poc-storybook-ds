@@ -1,5 +1,6 @@
 import styled, { css, keyframes } from 'styled-components';
-import React, { useState, useLayoutEffect, createElement } from 'react';
+import React, { useState, useLayoutEffect, useRef, useEffect, createElement } from 'react';
+import { usePopper } from 'react-popper';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -52,76 +53,56 @@ function __makeTemplateObject(cooked, raw) {
 
 var colors = {
     primary: {
-        green: "#44C0BC",
-        green40: "rgba(68, 192, 188, 0.4)",
-        gray: "#435C84",
-        gray40: "rgba(67, 92, 132, 0.4)",
+        green: '#44C0BC',
+        green40: 'rgba(68, 192, 188, 0.4)',
+        gray: '#435C84',
+        gray40: 'rgba(67, 92, 132, 0.4)',
     },
     secondary: {
-        purple: "#5A3BD3",
-        purple40: "rgba(90, 59, 211, 0.4)",
-        lightpurple: "#A780F9",
-        lightpurple40: "rgba(167, 128, 249, 0.4)",
+        purple: '#5A3BD3',
+        purple40: 'rgba(90, 59, 211, 0.4)',
+        lightpurple: '#A780F9',
+        lightpurple40: 'rgba(167, 128, 249, 0.4)',
     },
     system: {
-        error: "#FF656C",
-        warning: "#FFC065",
+        error: '#FF656C',
+        warning: '#FFC065',
     },
     neutrals: {
-        white: "#ffffff",
-        white25: "rgba(255, 255, 255, 0.25)",
-        black: "#000000",
-        darkestgrey: "#4C5867",
-        darkgrey: "#72859C",
-        lightgrey: "#AEC0D1",
-        lightergrey: "#D4D6E9",
-        lightergrey25: "rgba(212, 214, 233, 0.25)",
+        white: '#ffffff',
+        white25: 'rgba(255, 255, 255, 0.25)',
+        black: '#000000',
+        darkestgrey: '#4C5867',
+        darkgrey: '#72859C',
+        lightgrey: '#AEC0D1',
+        lightergrey: '#D4D6E9',
+        lightergrey25: 'rgba(212, 214, 233, 0.25)',
     },
     //old colors
-    white60: "rgba(255, 255, 255, 0.6)",
-    white38: "rgba(255, 255, 255, 0.38)",
-    gray1: "rgb(241, 241, 241)",
-    gray2: "rgb(235, 235, 235)",
-    gray3: "rgb(221, 221, 221)",
-    gray4: "rgb(186, 186, 186)",
-    gray5: "rgb(137, 137, 137)",
-    gray6: "rgb(39, 39, 39)",
-    // gray1: 'rgb(240, 242, 245)',
-    // gray2: 'rgb(183, 183, 183)',
-    // gray3: 'rgb(122, 125, 125)',
-    error: "rgb(207, 19, 34)",
-    // cores primárias
-    yellow100: "rgb(214, 222, 35)",
-    green100: "rgb(0, 166, 156)",
-    green60: "rgba(0, 166, 156, 0.6)",
-    green38: "rgba(0, 166, 156, 0.38)",
-    green12: "rgba(0, 166, 156, 0.12)",
-    green6: "rgba(0, 166, 156, 0.06)",
-    blue100: "rgb(3, 123, 192)",
-    blue60: "rgba(3, 123, 192, 0.6)",
-    blue38: "rgba(3, 123, 192, 0.38)",
-    blue12: "rgba(3, 123, 192, 0.12)",
-    blue6: "rgba(3, 123, 192, 0.06)",
-    // cores complementares
-    lightblue: "rgb(141, 215, 247)",
-    purple: "rgb(85, 49, 118)",
-    darkgreen: "rgb(0, 65, 61)",
-    darkblue: "rgb(3, 43, 82)",
+    gray1: 'rgb(241, 241, 241)',
+    gray2: 'rgb(238, 238, 238)',
+    gray3: 'rgb(216, 216, 216)',
+    gray4: 'rgb(186, 186, 186)',
+    gray5: 'rgb(80, 80, 80)',
+    gray6: 'rgb(39, 39, 39)',
+    error: 'rgb(207, 19, 34)',
+    blue100: 'rgb(14, 134, 192)',
+    lightblue: 'rgb(94, 163, 197)',
 };
 var genericFontProps = {
-    fontFamily: "Space Grotesk",
+    fontFamily: 'Space Grotesk',
     fontWeight: 400,
 };
 var fonts = {
-    heading1: __assign(__assign({}, genericFontProps), { fontSize: 68, lineHeight: "76px" }),
-    heading2: __assign(__assign({}, genericFontProps), { fontSize: 46, lineHeight: "54px" }),
-    heading3: __assign(__assign({}, genericFontProps), { fontSize: 30, lineHeight: "38px" }),
-    heading4: __assign(__assign({}, genericFontProps), { fontSize: 24, lineHeight: "32px" }),
-    heading5: __assign(__assign({}, genericFontProps), { fontSize: 24, lineHeight: "28px" }),
-    body1: __assign(__assign({}, genericFontProps), { fontSize: 16, lineHeight: "24px" }),
-    body2: __assign(__assign({}, genericFontProps), { fontSize: 14, lineHeight: "22px" }),
-    caption: __assign(__assign({}, genericFontProps), { fontSize: 14, lineHeight: "16px" }),
-    button: __assign(__assign({}, genericFontProps), { fontSize: 16, fontWeight: 600, textTransform: "uppercase", lineHeight: "24px" }),
+    heading1: __assign(__assign({}, genericFontProps), { fontSize: 68, lineHeight: '76px' }),
+    heading2: __assign(__assign({}, genericFontProps), { fontSize: 46, lineHeight: '54px' }),
+    heading3: __assign(__assign({}, genericFontProps), { fontSize: 30, lineHeight: '38px' }),
+    heading4: __assign(__assign({}, genericFontProps), { fontSize: 24, lineHeight: '32px' }),
+    heading5: __assign(__assign({}, genericFontProps), { fontSize: 20, lineHeight: '28px' }),
+    body1: __assign(__assign({}, genericFontProps), { fontSize: 16, lineHeight: '24px' }),
+    body2: __assign(__assign({}, genericFontProps), { fontSize: 14, lineHeight: '22px' }),
+    caption: __assign(__assign({}, genericFontProps), { fontSize: 14, lineHeight: '16px' }),
+    button: __assign(__assign({}, genericFontProps), { fontSize: 16, fontWeight: 600, lineHeight: '24px' }),
 };
 var gutter = 8;
 var breakpoints = {
@@ -143,14 +124,15 @@ var mediaQueries = {
     xlUp: "(min-width: " + breakpoints.xl + "px)",
 };
 var shadows = {
-    gray1: "0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)",
+    button: '0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)',
+    popper: '0px 2px 5px 0 rgba(0, 0, 0, 0.5)',
 };
 var borderRadius = {
-    square: "4px",
-    circle: "50%",
+    square: '4px',
+    circle: '50%',
 };
 var spacing = function (number) { return number * gutter; };
-var index$1 = {
+var index = {
     borderRadius: borderRadius,
     colors: colors,
     fonts: fonts,
@@ -159,29 +141,29 @@ var index$1 = {
     spacing: spacing,
 };
 
-var Container$1 = styled.div(templateObject_2$4 || (templateObject_2$4 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+var Container$2 = styled.div(templateObject_2$5 || (templateObject_2$5 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var size = _a.size, theme = _a.theme, variant = _a.variant;
-    return css(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "], ["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "])), theme.colors.neutrals.lightergrey, theme.borderRadius[variant], theme.colors.neutrals.darkestgrey, size, size, theme.fonts.body1);
+    return css(templateObject_1$7 || (templateObject_1$7 = __makeTemplateObject(["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "], ["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "])), theme.colors.neutrals.lightergrey, theme.borderRadius[variant], theme.colors.neutrals.darkestgrey, size, size, theme.fonts.body1);
 });
-var templateObject_1$5, templateObject_2$4;
+var templateObject_1$7, templateObject_2$5;
 
 var Avatar = function (_a) {
     var alt = _a.alt, src = _a.src, placeholder = _a.placeholder, _b = _a.size, size = _b === void 0 ? 40 : _b, _c = _a.variant, variant = _c === void 0 ? "square" : _c, rest = __rest(_a, ["alt", "src", "placeholder", "size", "variant"]);
     // @todo: add validation to src/placeholder if both are images urls are valid
     var content = React.createElement("img", { alt: alt, src: src || placeholder });
-    return (React.createElement(Container$1, __assign({ size: size, variant: variant }, rest), content));
+    return (React.createElement(Container$2, __assign({ size: size, variant: variant }, rest), content));
 };
 
-var rippleAnimation = keyframes(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"], ["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"])));
-var RippleContainer = styled.div(templateObject_2$3 || (templateObject_2$3 = __makeTemplateObject(["\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  span {\n    transform: scale(0);\n    border-radius: 100%;\n    position: absolute;\n    opacity: 0.75;\n    background-color: ", ";\n    animation-name: ", ";\n    animation-duration: ", "ms;\n  }\n"], ["\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  span {\n    transform: scale(0);\n    border-radius: 100%;\n    position: absolute;\n    opacity: 0.75;\n    background-color: ", ";\n    animation-name: ", ";\n    animation-duration: ", "ms;\n  }\n"])), function (_a) {
+var rippleAnimation = keyframes(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"], ["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"])));
+var RippleContainer = styled.div(templateObject_2$4 || (templateObject_2$4 = __makeTemplateObject(["\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  span {\n    transform: scale(0);\n    border-radius: 100%;\n    position: absolute;\n    opacity: 0.75;\n    background-color: ", ";\n    animation-name: ", ";\n    animation-duration: ", "ms;\n  }\n"], ["\n  position: absolute;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n\n  span {\n    transform: scale(0);\n    border-radius: 100%;\n    position: absolute;\n    opacity: 0.75;\n    background-color: ", ";\n    animation-name: ", ";\n    animation-duration: ", "ms;\n  }\n"])), function (_a) {
     var theme = _a.theme;
     return theme.colors.neutrals.white;
 }, rippleAnimation, function (_a) {
     var duration = _a.duration;
     return duration;
 });
-var templateObject_1$4, templateObject_2$3;
+var templateObject_1$6, templateObject_2$4;
 
 var Ripple = function (_a) {
     var _b = _a.duration, duration = _b === void 0 ? 850 : _b;
@@ -228,22 +210,22 @@ var Ripple = function (_a) {
 var handleBGColor = function (_a) {
     var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
     if (outlined) {
-        return "transparent";
+        return 'transparent';
     }
     if (disabled) {
         switch (variant) {
-            case "primary":
+            case 'primary':
                 return theme.colors.primary.green40;
-            case "secondary":
+            case 'secondary':
                 return theme.colors.primary.gray40;
             default:
                 return theme.colors.neutrals.lightergrey;
         }
     }
     switch (variant) {
-        case "primary":
+        case 'primary':
             return theme.colors.primary.green;
-        case "secondary":
+        case 'secondary':
             return theme.colors.primary.gray;
         default:
             return theme.colors.neutrals.lightgrey;
@@ -253,9 +235,9 @@ var handleTextColor = function (_a) {
     var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
     if (disabled) {
         switch (variant) {
-            case "primary":
+            case 'primary':
                 return theme.colors.primary.green40;
-            case "secondary":
+            case 'secondary':
                 return theme.colors.primary.gray40;
             default:
                 return theme.colors.neutrals.lightgrey;
@@ -263,9 +245,9 @@ var handleTextColor = function (_a) {
     }
     if (outlined) {
         switch (variant) {
-            case "primary":
+            case 'primary':
                 return theme.colors.primary.green;
-            case "secondary":
+            case 'secondary':
                 return theme.colors.primary.gray;
             default:
                 return theme.colors.neutrals.darkestgrey;
@@ -278,53 +260,66 @@ var handleTextColor = function (_a) {
 var handleBorderColor = function (_a) {
     var variant = _a.variant, disabled = _a.disabled, theme = _a.theme;
     if (disabled) {
-        return "transparent";
+        return 'transparent';
     }
     switch (variant) {
-        case "primary":
+        case 'primary':
             return theme.colors.primary.green;
-        case "secondary":
+        case 'secondary':
             return theme.colors.primary.gray;
         default:
             return theme.colors.neutrals.lightgrey;
     }
 };
-var Button$1 = styled.button(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+var Button$1 = styled.button(templateObject_2$3 || (templateObject_2$3 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme, size = _a.size;
-    return css(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n    background-color: ", ";\n    border: ", ";\n    border-radius: ", ";\n    box-shadow: ", ";\n    color: ", ";\n    cursor: ", ";\n    /* padding: ", "; */\n    position: relative;\n    overflow: hidden;\n    height: ", ";\n    width: ", ";\n\n    ", ";\n\n    &:hover {\n      background-color: ", ";\n    }\n    &:focus,\n    &:active {\n      outline: none;\n    }\n  "], ["\n    background-color: ", ";\n    border: ",
-        ";\n    border-radius: ", ";\n    box-shadow: ", ";\n    color: ", ";\n    cursor: ", ";\n    /* padding: ",
-        "; */\n    position: relative;\n    overflow: hidden;\n    height: ",
+    return css(templateObject_1$5 || (templateObject_1$5 = __makeTemplateObject(["\n    ", ";\n\n    background-color: ", ";\n    border: ", ";\n    border-radius: ", ";\n    box-shadow: ", ";\n    color: ", ";\n    cursor: ", ";\n    font-size: ", "px;\n    position: relative;\n    overflow: hidden;\n    height: ", ";\n    width: ", ";\n\n    &:hover {\n      background-color: ", ";\n    }\n    &:focus,\n    &:active {\n      outline: none;\n    }\n  "], ["\n    ", ";\n\n    background-color: ", ";\n    border: ",
+        ";\n    border-radius: ", ";\n    box-shadow: ", ";\n    color: ", ";\n    cursor: ", ";\n    font-size: ",
+        "px;\n    position: relative;\n    overflow: hidden;\n    height: ",
         ";\n    width: ",
-        ";\n\n    ", ";\n\n    &:hover {\n      background-color: ",
-        ";\n    }\n    &:focus,\n    &:active {\n      outline: none;\n    }\n  "])), handleBGColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme }), "2px solid " + handleBorderColor({
+        ";\n\n    &:hover {\n      background-color: ",
+        ";\n    }\n    &:focus,\n    &:active {\n      outline: none;\n    }\n  "])), function (_a) {
+        var theme = _a.theme;
+        return theme.fonts.button;
+    }, handleBGColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme }), "2px solid " + handleBorderColor({
         variant: variant,
         outlined: outlined,
         disabled: disabled,
         theme: theme,
-    }), theme.borderRadius.square, !disabled && theme.shadows.gray1, handleTextColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme }), disabled ? "not-allowed" : "pointer", function (_a) {
-        var theme = _a.theme;
-        return theme.spacing(1) + "px " + theme.spacing(2) + "px";
-    }, function () {
-        if (size === "small") {
-            return "25px";
+    }), theme.borderRadius.square, !disabled && theme.shadows.button, handleTextColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme }), disabled ? 'not-allowed' : 'pointer', function () {
+        if (size === 'small') {
+            return theme.fonts.body2.fontSize;
         }
-        return "35px";
-    }, function () {
-        if (size === "small") {
-            return "60px";
+        else if (size === 'large') {
+            return theme.fonts.heading5.fontSize;
         }
-        return "120px";
-    }, function (_a) {
-        var theme = _a.theme;
-        return theme.fonts.button;
-    }, function (_a) {
-        var variant = _a.variant, outlined = _a.outlined, disabled = _a.disabled, theme = _a.theme;
-        return handleBGColor({ variant: variant, outlined: outlined, disabled: disabled, theme: theme });
-    });
+        return theme.fonts.button.fontSize;
+    }, function () {
+        if (size === 'small') {
+            return '25px';
+        }
+        else if (size === 'large') {
+            return '48px';
+        }
+        return '35px';
+    }, function () {
+        if (size === 'small') {
+            return '60px';
+        }
+        else if (size === 'large') {
+            return '240px;';
+        }
+        return '120px';
+    }, handleBGColor({
+        variant: variant,
+        outlined: outlined,
+        disabled: disabled,
+        theme: theme,
+    }));
 });
-var LoadingContainer = styled.div(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n  position: absolute;\n"], ["\n  position: absolute;\n"])));
-var templateObject_1$3, templateObject_2$2, templateObject_3$1;
+var LoadingContainer = styled.div(templateObject_3$2 || (templateObject_3$2 = __makeTemplateObject(["\n  position: absolute;\n"], ["\n  position: absolute;\n"])));
+var templateObject_1$5, templateObject_2$3, templateObject_3$2;
 
 var Button = function (_a) {
     var children = _a.children, disabled = _a.disabled, isLoading = _a.isLoading, outlined = _a.outlined, _b = _a.type, type = _b === void 0 ? "button" : _b, _c = _a.size, size = _c === void 0 ? "medium" : _c, variant = _a.variant, rest = __rest(_a, ["children", "disabled", "isLoading", "outlined", "type", "size", "variant"]);
@@ -334,19 +329,84 @@ var Button = function (_a) {
         !isLoading && !disabled && React.createElement(Ripple, null)));
 };
 
-var Link = styled.button(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n  background-color: transparent;\n  border: none;\n  color: ", ";\n  cursor: pointer;\n  text-decoration: underline;\n\n  ", ";\n  &:focus,\n  &:active {\n    border: none;\n    outline: none;\n  }\n"], ["\n  background-color: transparent;\n  border: none;\n  color: ",
+var Link = styled.button(templateObject_1$4 || (templateObject_1$4 = __makeTemplateObject(["\n  background-color: transparent;\n  border: none;\n  color: ", ";\n  cursor: pointer;\n  text-decoration: underline;\n\n  ", ";\n  &:focus,\n  &:active {\n    border: none;\n    outline: none;\n  }\n"], ["\n  background-color: transparent;\n  border: none;\n  color: ",
     ";\n  cursor: pointer;\n  text-decoration: underline;\n\n  ", ";\n  &:focus,\n  &:active {\n    border: none;\n    outline: none;\n  }\n"])), function (_a) {
     var theme = _a.theme, disabled = _a.disabled;
-    return disabled ? theme.colors.secondary.purple40 : theme.colors.secondary.purple;
+    return disabled ? theme.colors.primary.green40 : theme.colors.primary.green;
 }, function (_a) {
     var theme = _a.theme;
     return theme.fonts.body1;
 });
-var templateObject_1$2;
+var templateObject_1$4;
 
 var ButtonLink = function (_a) {
     var children = _a.children, _b = _a.element, element = _b === void 0 ? "button" : _b; _a.to; var rest = __rest(_a, ["children", "element", "to"]);
     return (React.createElement(Link, __assign({ as: element }, rest), children));
+};
+
+var Container$1 = styled.div(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject([""], [""])));
+var PopperContainer = styled.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  display: flex;\n"], ["\n  display: flex;\n"])));
+var DropdownItemsContainer = styled.div(templateObject_4$1 || (templateObject_4$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+    "\n"])), function (_a) {
+    var theme = _a.theme, visible = _a.visible;
+    return css(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "], ["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "])), theme.shadows.popper, theme.colors.neutrals.white, visible ? 'flex' : 'none', theme.spacing(1));
+});
+var DropdownItem = styled.div(templateObject_5$1 || (templateObject_5$1 = __makeTemplateObject([""], [""])));
+var templateObject_1$3, templateObject_2$2, templateObject_3$1, templateObject_4$1, templateObject_5$1;
+
+var initialOffset = {
+    horizontal: 0,
+    vertical: 0,
+};
+var Dropdown = function (_a) {
+    var children = _a.children, anchorElement = _a.anchorElement, _b = _a.placement, placement = _b === void 0 ? 'bottom-start' : _b, _c = _a.offset, _d = _c === void 0 ? initialOffset : _c, horizontal = _d.horizontal, vertical = _d.vertical, _e = _a.trigger, trigger = _e === void 0 ? 'hover' : _e, rest = __rest(_a, ["children", "anchorElement", "placement", "offset", "trigger"]);
+    var referenceElement = useRef(null);
+    var popperElement = useRef(null);
+    var _f = useState(false), visible = _f[0], setVisibility = _f[1];
+    var actions = function () {
+        if (trigger === 'click') {
+            return { onClick: function () { return setVisibility(function (currentState) { return !currentState; }); } };
+        }
+        return {
+            onMouseEnter: function () { return setVisibility(true); },
+        };
+    };
+    var _g = usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
+        placement: placement,
+        modifiers: [
+            {
+                name: 'offset',
+                enabled: true,
+                options: {
+                    offset: [horizontal, vertical],
+                },
+            },
+        ],
+    }), styles = _g.styles, attributes = _g.attributes;
+    useEffect(function () {
+        var handleDocumentClick = function (_a) {
+            var _b, _c;
+            var target = _a.target;
+            // only stays visible if mouse is inside anchor
+            if (((_b = referenceElement.current) === null || _b === void 0 ? void 0 : _b.contains(target)) ||
+                (((_c = popperElement.current) === null || _c === void 0 ? void 0 : _c.contains(target)) && trigger === 'hover')) {
+                return;
+            }
+            setVisibility(false);
+        };
+        var eventListener = trigger === 'hover' ? 'mousemove' : 'mousedown';
+        document.addEventListener(eventListener, handleDocumentClick);
+        return function () {
+            document.removeEventListener(eventListener, handleDocumentClick);
+        };
+    }, []);
+    return (React.createElement(Container$1, __assign({}, rest),
+        React.createElement("div", __assign({ ref: referenceElement, style: { display: 'inline-flex' } }, actions()), anchorElement),
+        React.createElement(PopperContainer, __assign({ ref: popperElement, style: styles.popper }, attributes.popper),
+            React.createElement(DropdownItemsContainer, { style: styles.offset, visible: visible }, children &&
+                React.Children.map(children, function (child) {
+                    return React.createElement(DropdownItem, null, child);
+                })))));
 };
 
 var hexToRgb = function (hex) {
@@ -762,7 +822,7 @@ var iconDictionary = {
     "prontmed-logo-light-bg": SvgProntmedLogoLightBg,
 };
 
-var index = (function (_a) {
+var IconCmp = (function (_a) {
     var name = _a.name, fill = _a.fill, height = _a.height, width = _a.width, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, _c = _a.size, size = _c === void 0 ? 21 : _c, rest = __rest(_a, ["name", "fill", "height", "width", "color", "size"]);
     var Icon = iconDictionary[name];
     var colorToFill = findColorInTheme(color);
@@ -772,9 +832,9 @@ var index = (function (_a) {
 var Text = styled.p(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme, type = _a.type, color = _a.color;
-    return css(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    color: ", ";\n    margin: 0;\n\n    ", ";\n  "], ["\n    color: ", ";\n    margin: 0;\n\n    ", ";\n  "])), findColorInTheme(color), theme.fonts[type]);
+    return css(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject(["\n    color: ", ";\n    margin: 0;\n\n    ", ";\n  "], ["\n    color: ", ";\n    margin: 0;\n\n    ", ";\n  "])), findColorInTheme(color), theme.fonts[type]);
 });
-var templateObject_1$1, templateObject_2$1;
+var templateObject_1$2, templateObject_2$1;
 
 var Typography = function (_a) {
     var children = _a.children, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, _c = _a.type, type = _c === void 0 ? "body1" : _c, _d = _a.variant, variant = _d === void 0 ? "p" : _d, rest = __rest(_a, ["children", "color", "type", "variant"]);
@@ -782,14 +842,23 @@ var Typography = function (_a) {
 };
 
 var Label = styled(Typography).attrs(function () { return ({
-    variant: "label",
-    type: "caption",
-}); })(templateObject_1 || (templateObject_1 = __makeTemplateObject([""], [""])));
-var InputContent = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n"], ["\n  display: flex;\n  flex-direction: column;\n"])));
+    variant: 'label',
+    type: 'caption',
+}); })(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject([""], [""])));
+var InputContent = styled.div(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n"], ["\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n"])));
 var Container = styled.div(templateObject_4 || (templateObject_4 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
-    var theme = _a.theme, color = _a.color;
-    return css(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n    ", " {\n      color: ", ";\n    }\n    * {\n      box-sizing: border-box;\n    }\n  "], ["\n    align-items: center;\n    border: 1px solid ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    padding: ", "px ", "px;\n\n    svg {\n      fill: ", ";\n    }\n    ", " {\n      color: ", ";\n    }\n    * {\n      box-sizing: border-box;\n    }\n  "])), findColorInTheme(color, 0.4), theme.borderRadius.square, findColorInTheme(color), theme.spacing(1), theme.spacing(2), findColorInTheme(color), Label, findColorInTheme(color));
+    var theme = _a.theme, color = _a.color, outlined = _a.outlined;
+    return css(templateObject_3 || (templateObject_3 = __makeTemplateObject(["\n    align-items: center;\n    border: ", ";\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: inline-flex;\n    padding: ", "px ", "px;\n    width: 400px;\n\n    svg {\n      fill: ", ";\n    }\n    ", " {\n      color: ", ";\n    }\n    * {\n      box-sizing: border-box;\n    }\n    input:-webkit-autofill,\n    input:-webkit-autofill:hover,\n    input:-webkit-autofill:focus {\n      background-color: transparent !important;\n      color: inherit;\n    }\n  "], ["\n    align-items: center;\n    border: ", ";\n    background-color: ", ";\n    border-radius: ", ";\n    color: ",
+        ";\n    display: inline-flex;\n    padding: ", "px ", "px;\n    width: 400px;\n\n    svg {\n      fill: ",
+        ";\n    }\n    ", " {\n      color: ",
+        ";\n    }\n    * {\n      box-sizing: border-box;\n    }\n    input:-webkit-autofill,\n    input:-webkit-autofill:hover,\n    input:-webkit-autofill:focus {\n      background-color: transparent !important;\n      color: inherit;\n    }\n  "])), outlined && "1px solid " + findColorInTheme(color, 0.4), !outlined && findColorInTheme(color), theme.borderRadius.square, outlined
+        ? findColorInTheme(color)
+        : theme.colors.neutrals.darkestgrey, theme.spacing(1), theme.spacing(2), outlined
+        ? findColorInTheme(color)
+        : theme.colors.neutrals.darkestgrey, Label, outlined
+        ? findColorInTheme(color)
+        : theme.colors.neutrals.darkestgrey);
 });
 var PrefixContainer = styled.div(templateObject_5 || (templateObject_5 = __makeTemplateObject(["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"], ["\n  align-items: center;\n  color: inherit;\n  display: flex;\n  justify-content: center;\n  margin-right: ", "px;\n"])), function (_a) {
     var theme = _a.theme;
@@ -804,11 +873,11 @@ var Input = styled.input(templateObject_8 || (templateObject_8 = __makeTemplateO
     var theme = _a.theme;
     return css(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    height: 22px;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "], ["\n    background-color: transparent;\n    border: none;\n    color: inherit;\n    height: 22px;\n    outline: none;\n    ", ";\n\n    &:focus,\n    &:active {\n      border: none;\n      outline: none;\n    }\n    ::placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n    :-ms-input-placeholder {\n      color: inherit;\n      opacity: 0.4;\n    }\n  "])), theme.fonts.body1);
 });
-var templateObject_1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
+var templateObject_1$1, templateObject_2, templateObject_3, templateObject_4, templateObject_5, templateObject_6, templateObject_7, templateObject_8;
 
 var TextField = function (_a) {
-    var className = _a.className, label = _a.label, Prefix = _a.prefix, Suffix = _a.suffix, style = _a.style, _b = _a.color, color = _b === void 0 ? "darkestgrey" : _b, rest = __rest(_a, ["className", "label", "prefix", "suffix", "style", "color"]);
-    return (React.createElement(Container, { className: className, style: style, color: color },
+    var className = _a.className, label = _a.label, outlined = _a.outlined, Prefix = _a.prefix, Suffix = _a.suffix, style = _a.style, _b = _a.color, color = _b === void 0 ? 'white' : _b, rest = __rest(_a, ["className", "label", "outlined", "prefix", "suffix", "style", "color"]);
+    return (React.createElement(Container, { className: className, style: style, color: color, outlined: outlined },
         !!Prefix && React.createElement(PrefixContainer, null, Prefix),
         React.createElement(InputContent, null,
             label && React.createElement(Label, null, label),
@@ -816,5 +885,14 @@ var TextField = function (_a) {
         !!Suffix && React.createElement(SuffixContainer, null, Suffix)));
 };
 
-export { Avatar, Button, ButtonLink, index as Icon, TextField as InputText, Typography, index$1 as theme };
+var Icon = styled(IconCmp)(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  cursor: pointer;\n"], ["\n  cursor: pointer;\n"])));
+var templateObject_1;
+
+var Password = function (_a) {
+    var _b = _a.color, color = _b === void 0 ? 'white' : _b, outlined = _a.outlined, rest = __rest(_a, ["color", "outlined"]);
+    var _c = useState(false), isVisible = _c[0], setVisibility = _c[1];
+    return (React.createElement(TextField, __assign({ type: isVisible ? 'text' : 'password', color: color, outlined: outlined, suffix: React.createElement(Icon, { name: isVisible ? 'notification' : 'hidden', color: outlined ? color : 'darkestgrey', width: 22, height: 18, onClick: function () { return setVisibility(function (currentState) { return !currentState; }); } }) }, rest)));
+};
+
+export { Avatar, Button, ButtonLink, Dropdown, IconCmp as Icon, Password, TextField, Typography, index as theme };
 //# sourceMappingURL=index.esm.js.map
