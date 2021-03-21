@@ -1,19 +1,29 @@
 import React from "react";
-import theme from "../theme";
 
 import Icon from "../Icon";
-import TextCmp from "./Text";
+import TextFieldCmp from "./TextField";
+import PasswordCmp from "./Password";
 
 export default {
   title: "Inputs",
 };
 
-export const Text = () => (
-  <div style={{ backgroundColor: theme.colors.primary.gray, padding: 16 }}>
-    <TextCmp
-      placeholder="buscar pacientes"
-      prefix={<Icon name="patients" width={22} height={14} color="white" />}
-      style={{ color: "#ffffff" }}
-    />
+export const TextField = () => (
+  <>
+    <div>
+      <TextFieldCmp label="login" placeholder="digite aqui" />
+    </div>
+    <div>
+      <TextFieldCmp
+        placeholder="buscar pacientes"
+        prefix={<Icon name="patients" width={22} height={14} />}
+      />
+    </div>
+  </>
+);
+
+export const Password = () => (
+  <div>
+    <PasswordCmp label="senha" placeholder="digite aqui" />
   </div>
 );
