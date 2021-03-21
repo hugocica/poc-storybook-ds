@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import { ILinkProps } from "./types";
+import styled from 'styled-components';
+import { ILinkProps } from './types';
 
 export const Link = styled.button<ILinkProps>`
   background-color: transparent;
   border: none;
   color: ${({ theme, disabled }) =>
-    disabled ? theme.colors.secondary.purple40 : theme.colors.secondary.purple};
+    disabled ? theme.colors.primary.green40 : theme.colors.primary.green};
   cursor: pointer;
   text-decoration: underline;
 

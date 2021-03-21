@@ -1,7 +1,7 @@
-import React from "react";
-import styled, { DefaultTheme, css } from "styled-components";
+import React from 'react';
+import styled, { DefaultTheme, css } from 'styled-components';
 // import ButtonMUI, { ButtonProps } from '@material-ui/core/Button';
-import { TButtonProps, IButtonProps } from "./types";
+import { TButtonProps, IButtonProps } from './types';
 
 type TButton = TButtonProps & {
   theme: DefaultTheme;
@@ -9,14 +9,14 @@ type TButton = TButtonProps & {
 
 const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
   if (outlined) {
-    return "transparent";
+    return 'transparent';
   }
 
   if (disabled) {
     switch (variant) {
-      case "primary":
+      case 'primary':
         return theme.colors.primary.green40;
-      case "secondary":
+      case 'secondary':
         return theme.colors.primary.gray40;
       default:
         return theme.colors.neutrals.lightergrey;
@@ -24,9 +24,9 @@ const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
   }
 
   switch (variant) {
-    case "primary":
+    case 'primary':
       return theme.colors.primary.green;
-    case "secondary":
+    case 'secondary':
       return theme.colors.primary.gray;
     default:
       return theme.colors.neutrals.lightgrey;
@@ -36,9 +36,9 @@ const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
 const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
   if (disabled) {
     switch (variant) {
-      case "primary":
+      case 'primary':
         return theme.colors.primary.green40;
-      case "secondary":
+      case 'secondary':
         return theme.colors.primary.gray40;
       default:
         return theme.colors.neutrals.lightgrey;
@@ -47,9 +47,9 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
 
   if (outlined) {
     switch (variant) {
-      case "primary":
+      case 'primary':
         return theme.colors.primary.green;
-      case "secondary":
+      case 'secondary':
         return theme.colors.primary.gray;
       default:
         return theme.colors.neutrals.darkestgrey;
@@ -63,13 +63,13 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
 
 const handleBorderColor = ({ variant, disabled, theme }: TButton) => {
   if (disabled) {
-    return "transparent";
+    return 'transparent';
   }
 
   switch (variant) {
-    case "primary":
+    case 'primary':
       return theme.colors.primary.green;
-    case "secondary":
+    case 'secondary':
       return theme.colors.primary.gray;
     default:
       return theme.colors.neutrals.lightgrey;
@@ -78,6 +78,8 @@ const handleBorderColor = ({ variant, disabled, theme }: TButton) => {
 
 export const Button = styled.button<IButtonProps>`
   ${({ variant, outlined, disabled, theme, size }) => css`
+    ${({ theme }) => theme.fonts.button};
+
     background-color: ${handleBGColor({ variant, outlined, disabled, theme })};
     border: ${`2px solid ${handleBorderColor({
       variant,
@@ -86,33 +88,46 @@ export const Button = styled.button<IButtonProps>`
       theme,
     })}`};
     border-radius: ${theme.borderRadius.square};
-    box-shadow: ${!disabled && theme.shadows.gray1};
+    box-shadow: ${!disabled && theme.shadows.button};
     color: ${handleTextColor({ variant, outlined, disabled, theme })};
-    cursor: ${disabled ? "not-allowed" : "pointer"};
-    /* padding: ${({ theme }) =>
-      `${theme.spacing(1)}px ${theme.spacing(2)}px`}; */
+    cursor: ${disabled ? 'not-allowed' : 'pointer'};
+    font-size: ${() => {
+      if (size === 'small') {
+        return theme.fonts.body2.fontSize;
+      } else if (size === 'large') {
+        return theme.fonts.heading5.fontSize;
+      }
+
+      return theme.fonts.button.fontSize;
+    }}px;
     position: relative;
     overflow: hidden;
     height: ${() => {
-      if (size === "small") {
-        return "25px";
+      if (size === 'small') {
+        return '25px';
+      } else if (size === 'large') {
+        return '48px';
       }
 
-      return "35px";
+      return '35px';
     }};
     width: ${() => {
-      if (size === "small") {
-        return "60px";
+      if (size === 'small') {
+        return '60px';
+      } else if (size === 'large') {
+        return '240px;';
       }
 
-      return "120px";
+      return '120px';
     }};
 
-    ${({ theme }) => theme.fonts.button};
-
     &:hover {
-      background-color: ${({ variant, outlined, disabled, theme }) =>
-        handleBGColor({ variant, outlined, disabled, theme })};
+      background-color: ${handleBGColor({
+        variant,
+        outlined,
+        disabled,
+        theme,
+      })};
     }
     &:focus,
     &:active {
