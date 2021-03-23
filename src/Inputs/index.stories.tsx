@@ -33,6 +33,7 @@ export const Password = () => (
       label="senha"
       placeholder="digite aqui"
       color="darkestgrey"
+      iconColor="green"
       outlined
     />
   </div>

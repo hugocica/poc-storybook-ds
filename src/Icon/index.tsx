@@ -1,15 +1,15 @@
 import React from 'react';
-import { findColorInTheme } from "../theme/helper";
+import { findColorInTheme } from '../theme/helper';
 
-import { IIconProps, iconDictionary } from "./types";
+import { IIconProps, iconDictionary } from './types';
 
 export default ({
   name,
   fill,
   height,
   width,
-  color = "darkestgrey",
-  size = 21,
+  color = 'darkestgrey',
+  size = 24,
   ...rest
 }: IIconProps & React.SVGAttributes<SVGElement>) => {
   const Icon = iconDictionary[name];

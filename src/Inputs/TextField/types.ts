@@ -4,6 +4,7 @@ import { TColors } from 'theme';
 export interface ITextFieldProps {
   color?: TColors;
   label?: string;
+  iconColor?: TColors;
   outlined?: boolean;
   prefix?: ReactNode;
   suffix?: ReactNode;

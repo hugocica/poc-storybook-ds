@@ -20,10 +20,10 @@ const Password = ({
       outlined={outlined}
       suffix={
         <s.Icon
-          name={isVisible ? 'notification' : 'hidden'}
+          name={isVisible ? 'visible' : 'hidden'}
           color={outlined ? color : 'darkestgrey'}
-          width={22}
-          height={18}
+          width={24}
+          height={24}
           onClick={() => setVisibility((currentState) => !currentState)}
         />
       }
