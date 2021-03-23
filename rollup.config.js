@@ -1,31 +1,35 @@
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
-import includePaths from "rollup-plugin-includepaths";
-import svg from "rollup-plugin-svg";
-import svgr from "@svgr/rollup";
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import typescript from 'rollup-plugin-typescript2';
+import svg from 'rollup-plugin-svg';
+import svgr from '@svgr/rollup';
 
-const packageJson = require("./package.json");
+const packageJson = require('./package.json');
 
-let includePathOptions = {
+const includePathOptions = {
   include: {},
-  paths: ["src"],
+  paths: ['src'],
   external: [],
-  extensions: [".js", ".jsx", ".ts", ".tsx", ".svg"],
+  extensions: ['.js', '.jsx', '.ts', '.tsx', '.svg'],
+};
+
+const globals = {
+  ...packageJson.devDependencies,
+  ...packageJson.peerDependencies,
 };
 
 export default {
-  input: "src/index.tsx",
+  input: 'src/index.tsx',
   output: [
     {
       file: packageJson.main,
-      format: "cjs",
+      format: 'cjs',
       sourcemap: true,
     },
     {
       file: packageJson.module,
-      format: "esm",
+      format: 'esm',
       sourcemap: true,
     },
   ],
@@ -33,9 +37,19 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript(),
-    includePaths(includePathOptions),
+    typescript({
+      useTsconfigDeclarationDir: true,
+      tsconfigOverride: {
+        exclude: ['**/*.stories.*'],
+      },
+      typescript: require('typescript'),
+    }),
+    commonjs({
+      exclude: 'node_modules',
+      ignoreGlobal: true,
+    }),
     svg(),
     svgr(),
   ],
+  external: Object.keys(globals),
 };

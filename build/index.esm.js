@@ -813,14 +813,15 @@ var ButtonLink = function (_a) {
 };
 
 var Container$1 = styled.div(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject([""], [""])));
-var PopperContainer = styled.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  display: flex;\n  z-index: 1;\n"], ["\n  display: flex;\n  z-index: 1;\n"])));
-var DropdownItemsContainer = styled.div(templateObject_4$1 || (templateObject_4$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+var ReferenceContainer = styled.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  display: flex;\n"], ["\n  display: flex;\n"])));
+var PopperContainer = styled.div(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n  display: flex;\n  z-index: 1;\n"], ["\n  display: flex;\n  z-index: 1;\n"])));
+var DropdownItemsContainer = styled.div(templateObject_5$1 || (templateObject_5$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme, visible = _a.visible;
-    return css(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "], ["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "])), theme.shadows.popper, theme.colors.neutrals.white, visible ? 'flex' : 'none', theme.spacing(1));
+    return css(templateObject_4$1 || (templateObject_4$1 = __makeTemplateObject(["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "], ["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "])), theme.shadows.popper, theme.colors.neutrals.white, visible ? 'flex' : 'none', theme.spacing(1));
 });
-var DropdownItem = styled.div(templateObject_5$1 || (templateObject_5$1 = __makeTemplateObject([""], [""])));
-var templateObject_1$3, templateObject_2$2, templateObject_3$1, templateObject_4$1, templateObject_5$1;
+var DropdownItem = styled.div(templateObject_6$1 || (templateObject_6$1 = __makeTemplateObject([""], [""])));
+var templateObject_1$3, templateObject_2$2, templateObject_3$1, templateObject_4$1, templateObject_5$1, templateObject_6$1;
 
 var initialOffset = {
     horizontal: 0,
@@ -839,6 +840,7 @@ var initialOffset = {
  */
 var Dropdown = function (_a) {
     var children = _a.children, anchorElement = _a.anchorElement, _b = _a.placement, placement = _b === void 0 ? 'bottom-start' : _b, _c = _a.offset, _d = _c === void 0 ? initialOffset : _c, horizontal = _d.horizontal, vertical = _d.vertical, _e = _a.trigger, trigger = _e === void 0 ? 'hover' : _e, rest = __rest(_a, ["children", "anchorElement", "placement", "offset", "trigger"]);
+    document.getElementById('root');
     var referenceElement = useRef(null);
     var popperElement = useRef(null);
     var _f = useState(false), visible = _f[0], setVisibility = _f[1];
@@ -854,15 +856,18 @@ var Dropdown = function (_a) {
         placement: placement,
         modifiers: [
             {
+                name: 'preventOverflow',
+                enabled: true,
+                options: {
+                    boundary: document.getElementById('root'),
+                },
+            },
+            {
                 name: 'offset',
                 enabled: true,
                 options: {
                     offset: [horizontal, vertical],
                 },
-            },
-            {
-                name: 'preventOverflow',
-                enabled: true,
             },
             {
                 name: 'flip',
@@ -888,13 +893,14 @@ var Dropdown = function (_a) {
             document.removeEventListener(eventListener, handleDocumentClick);
         };
     }, []);
+    var renderDropdownContent = children &&
+        React.Children.map(children, function (child) {
+            return (React.createElement(DropdownItem, { onClick: function () { return setVisibility(false); } }, child));
+        });
     return (React.createElement(Container$1, __assign({}, rest),
-        React.createElement("div", __assign({ ref: referenceElement, style: { display: 'inline-flex' } }, actions()), anchorElement),
+        React.createElement(ReferenceContainer, __assign({ ref: referenceElement }, actions()), anchorElement),
         ReactDOM.createPortal(React.createElement(PopperContainer, __assign({ ref: popperElement, style: styles.popper }, attributes.popper),
-            React.createElement(DropdownItemsContainer, { style: styles.offset, visible: visible }, children &&
-                React.Children.map(children, function (child) {
-                    return (React.createElement(DropdownItem, { onClick: function () { return setVisibility(false); } }, child));
-                }))), document.getElementById('root'))));
+            React.createElement(DropdownItemsContainer, { style: styles.offset, visible: visible }, renderDropdownContent)), document.getElementById('root'))));
 };
 
 var Text = styled.p(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
@@ -957,9 +963,9 @@ var Icon = styled(IconCmp)(templateObject_1 || (templateObject_1 = __makeTemplat
 var templateObject_1;
 
 var Password = function (_a) {
-    var _b = _a.color, color = _b === void 0 ? 'white' : _b; _a.iconColor; var outlined = _a.outlined, rest = __rest(_a, ["color", "iconColor", "outlined"]);
+    var _b = _a.color, color = _b === void 0 ? 'white' : _b, outlined = _a.outlined, rest = __rest(_a, ["color", "outlined"]);
     var _c = useState(false), isVisible = _c[0], setVisibility = _c[1];
-    return (React.createElement(TextField, __assign({ type: isVisible ? 'text' : 'password', color: color, outlined: outlined, suffix: React.createElement(Icon, { name: isVisible ? 'visible' : 'hidden', color: "green", onClick: function () { return setVisibility(function (currentState) { return !currentState; }); } }) }, rest)));
+    return (React.createElement(TextField, __assign({ type: isVisible ? 'text' : 'password', color: color, outlined: outlined, suffix: React.createElement(Icon, { name: isVisible ? 'visible' : 'hidden', color: outlined ? color : 'darkestgrey', width: 24, height: 24, onClick: function () { return setVisibility(function (currentState) { return !currentState; }); } }) }, rest)));
 };
 
 export { Avatar, Button, ButtonLink, Dropdown, IconCmp as Icon, Password, TextField, Typography, index as theme };
