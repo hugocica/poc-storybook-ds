@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 // import { Grid } from '@material-ui/core';
 
-import Button from "./index";
-import ButtonLink from "./Link";
+import Button from './index';
+import ButtonLink from './Link';
 
 export default {
-  title: "Button",
+  title: 'Button',
 };
 
 export const Default = () => (

@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import { ILinkProps } from "./types";
-import * as s from "./styles";
+import { ILinkProps } from './types';
+import * as s from './styles';
 
 const ButtonLink: React.FC<ILinkProps> = ({
   children,
-  element = "button",
+  element = 'button',
   to,
   ...rest
 }) => {
   return (
-    <s.Link as={element} {...rest}>
+    <s.Link as={element} type="button" {...rest}>
       {children}
     </s.Link>
   );

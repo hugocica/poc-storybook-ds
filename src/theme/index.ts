@@ -43,8 +43,8 @@ export const colors = {
   primary: {
     green: '#44C0BC',
     green40: 'rgba(68, 192, 188, 0.4)',
-    gray: '#435C84',
-    gray40: 'rgba(67, 92, 132, 0.4)',
+    grey: '#435C84',
+    grey40: 'rgba(67, 92, 132, 0.4)',
   },
   secondary: {
     purple: '#5A3BD3',
@@ -68,12 +68,12 @@ export const colors = {
   },
 
   //old colors
-  gray1: 'rgb(241, 241, 241)',
-  gray2: 'rgb(238, 238, 238)',
-  gray3: 'rgb(216, 216, 216)',
-  gray4: 'rgb(186, 186, 186)',
-  gray5: 'rgb(80, 80, 80)',
-  gray6: 'rgb(39, 39, 39)',
+  grey1: 'rgb(241, 241, 241)',
+  grey2: 'rgb(238, 238, 238)',
+  grey3: 'rgb(216, 216, 216)',
+  grey4: 'rgb(186, 186, 186)',
+  grey5: 'rgb(80, 80, 80)',
+  grey6: 'rgb(39, 39, 39)',
   error: 'rgb(207, 19, 34)',
   blue100: 'rgb(14, 134, 192)',
   lightblue: 'rgb(94, 163, 197)',

@@ -1,18 +1,18 @@
-import React from "react";
-import Ripple from "../Ripple";
+import React from 'react';
+import Ripple from '../Ripple';
 
-// import { LoadingSpinner } from 'components/Loading';
+import Loading from '../Loading';
 
-import * as s from "./styles";
-import { TButtonProps } from "./types";
+import * as s from './styles';
+import { TButtonProps } from './types';
 
 const Button: React.FC<TButtonProps> = ({
   children,
   disabled,
   isLoading,
   outlined,
-  type = "button",
-  size = "medium",
+  type = 'button',
+  size = 'medium',
   variant,
   ...rest
 }) => {
@@ -29,7 +29,7 @@ const Button: React.FC<TButtonProps> = ({
       {children}
       {isLoading ? (
         <s.LoadingContainer>
-          {/* <LoadingSpinner color="darkblue" size={24} /> */}
+          <Loading color="darkestgrey" />
         </s.LoadingContainer>
       ) : null}
       {!isLoading && !disabled && <Ripple />}

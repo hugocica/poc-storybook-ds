@@ -17,7 +17,7 @@ const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
       case 'primary':
         return theme.colors.primary.green40;
       case 'secondary':
-        return theme.colors.primary.gray40;
+        return theme.colors.primary.grey40;
       default:
         return theme.colors.neutrals.lightergrey;
     }
@@ -27,7 +27,7 @@ const handleBGColor = ({ variant, outlined, disabled, theme }: TButton) => {
     case 'primary':
       return theme.colors.primary.green;
     case 'secondary':
-      return theme.colors.primary.gray;
+      return theme.colors.primary.grey;
     default:
       return theme.colors.neutrals.lightgrey;
   }
@@ -39,7 +39,7 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
       case 'primary':
         return theme.colors.primary.green40;
       case 'secondary':
-        return theme.colors.primary.gray40;
+        return theme.colors.primary.grey40;
       default:
         return theme.colors.neutrals.lightgrey;
     }
@@ -50,7 +50,7 @@ const handleTextColor = ({ variant, outlined, disabled, theme }: TButton) => {
       case 'primary':
         return theme.colors.primary.green;
       case 'secondary':
-        return theme.colors.primary.gray;
+        return theme.colors.primary.grey;
       default:
         return theme.colors.neutrals.darkestgrey;
     }
@@ -70,7 +70,7 @@ const handleBorderColor = ({ variant, disabled, theme }: TButton) => {
     case 'primary':
       return theme.colors.primary.green;
     case 'secondary':
-      return theme.colors.primary.gray;
+      return theme.colors.primary.grey;
     default:
       return theme.colors.neutrals.lightgrey;
   }
@@ -138,4 +138,6 @@ export const Button = styled.button<IButtonProps>`
 
 export const LoadingContainer = styled.div`
   position: absolute;
+  left: calc(50% - 12px);
+  top: calc(50% - 12px);
 `;

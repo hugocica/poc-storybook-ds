@@ -14,7 +14,7 @@ const wavyAnimation = keyframes`
 `;
 
 export const Skeleton = styled.div<ISkeletonProps>`
-  background-color: ${({ theme }) => theme.colors.neutrals.lightergrey};
+  background-color: ${({ theme }) => theme.colors.neutrals.lightergrey25};
   border-radius: ${({ variant, theme }) => theme.borderRadius[variant]};
   height: ${({ height }) => {
     if (!height) {
