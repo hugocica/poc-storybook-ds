@@ -56,8 +56,8 @@ var colors = {
     primary: {
         green: '#44C0BC',
         green40: 'rgba(68, 192, 188, 0.4)',
-        gray: '#435C84',
-        gray40: 'rgba(67, 92, 132, 0.4)',
+        grey: '#435C84',
+        grey40: 'rgba(67, 92, 132, 0.4)',
     },
     secondary: {
         purple: '#5A3BD3',
@@ -80,12 +80,12 @@ var colors = {
         lightergrey25: 'rgba(212, 214, 233, 0.25)',
     },
     //old colors
-    gray1: 'rgb(241, 241, 241)',
-    gray2: 'rgb(238, 238, 238)',
-    gray3: 'rgb(216, 216, 216)',
-    gray4: 'rgb(186, 186, 186)',
-    gray5: 'rgb(80, 80, 80)',
-    gray6: 'rgb(39, 39, 39)',
+    grey1: 'rgb(241, 241, 241)',
+    grey2: 'rgb(238, 238, 238)',
+    grey3: 'rgb(216, 216, 216)',
+    grey4: 'rgb(186, 186, 186)',
+    grey5: 'rgb(80, 80, 80)',
+    grey6: 'rgb(39, 39, 39)',
     error: 'rgb(207, 19, 34)',
     blue100: 'rgb(14, 134, 192)',
     lightblue: 'rgb(94, 163, 197)',
@@ -142,7 +142,7 @@ var index = {
     spacing: spacing,
 };
 
-var Container$2 = styled.div(templateObject_2$6 || (templateObject_2$6 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+var Container$1 = styled.div(templateObject_2$6 || (templateObject_2$6 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var size = _a.size, theme = _a.theme, variant = _a.variant;
     return css(templateObject_1$8 || (templateObject_1$8 = __makeTemplateObject(["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "], ["\n    align-items: center;\n    background-color: ", ";\n    border-radius: ", ";\n    color: ", ";\n    display: flex;\n    justify-content: center;\n    height: ", "px;\n    overflow: hidden;\n    width: ", "px;\n\n    ", ";\n\n    img {\n      width: 100%;\n    }\n  "])), theme.colors.neutrals.lightergrey, theme.borderRadius[variant], theme.colors.neutrals.darkestgrey, size, size, theme.fonts.body1);
@@ -153,7 +153,7 @@ var Avatar = function (_a) {
     var alt = _a.alt, src = _a.src, placeholder = _a.placeholder, _b = _a.size, size = _b === void 0 ? 40 : _b, _c = _a.variant, variant = _c === void 0 ? "square" : _c, rest = __rest(_a, ["alt", "src", "placeholder", "size", "variant"]);
     // @todo: add validation to src/placeholder if both are images urls are valid
     var content = React.createElement("img", { alt: alt, src: src || placeholder });
-    return (React.createElement(Container$2, __assign({ size: size, variant: variant }, rest), content));
+    return (React.createElement(Container$1, __assign({ size: size, variant: variant }, rest), content));
 };
 
 var rippleAnimation = keyframes(templateObject_1$7 || (templateObject_1$7 = __makeTemplateObject(["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"], ["\n  to {\n      opacity: 0;\n      transform: scale(2);\n    }\n"])));
@@ -236,18 +236,138 @@ var findColorInTheme = function (color, opacity) {
         colors.primary[color], opacity);
 };
 
-var _path$c;
+var _path$k;
 
-function _extends$c() { _extends$c = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$c.apply(this, arguments); }
+function _extends$k() { _extends$k = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$k.apply(this, arguments); }
 
 function SvgArrowDown(props) {
-  return /*#__PURE__*/createElement("svg", _extends$c({
+  return /*#__PURE__*/createElement("svg", _extends$k({
     width: 12,
     height: 8,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
-  }, props), _path$c || (_path$c = /*#__PURE__*/createElement("path", {
+  }, props), _path$k || (_path$k = /*#__PURE__*/createElement("path", {
     d: "M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6L1.41 0z"
+  })));
+}
+
+var _path$j;
+
+function _extends$j() { _extends$j = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$j.apply(this, arguments); }
+
+function SvgArrowLeft(props) {
+  return /*#__PURE__*/createElement("svg", _extends$j({
+    width: 8,
+    height: 12,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$j || (_path$j = /*#__PURE__*/createElement("path", {
+    d: "M7.41 1.41L2.83 6l4.58 4.59L6 12 0 6l6-6 1.41 1.41z"
+  })));
+}
+
+var _path$i;
+
+function _extends$i() { _extends$i = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$i.apply(this, arguments); }
+
+function SvgArrowRight(props) {
+  return /*#__PURE__*/createElement("svg", _extends$i({
+    width: 8,
+    height: 12,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$i || (_path$i = /*#__PURE__*/createElement("path", {
+    d: "M0 10.59L4.58 6 0 1.41 1.41 0l6 6-6 6L0 10.59z"
+  })));
+}
+
+var _path$h;
+
+function _extends$h() { _extends$h = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$h.apply(this, arguments); }
+
+function SvgArrowUp(props) {
+  return /*#__PURE__*/createElement("svg", _extends$h({
+    width: 12,
+    height: 8,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$h || (_path$h = /*#__PURE__*/createElement("path", {
+    d: "M10.59 7.41L6 2.83 1.41 7.41 0 6l6-6 6 6-1.41 1.41z"
+  })));
+}
+
+var _path$g;
+
+function _extends$g() { _extends$g = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$g.apply(this, arguments); }
+
+function SvgClose(props) {
+  return /*#__PURE__*/createElement("svg", _extends$g({
+    width: 14,
+    height: 14,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$g || (_path$g = /*#__PURE__*/createElement("path", {
+    d: "M8.46 7L14 12.54V14h-1.46L7 8.46 1.46 14H0v-1.46L5.54 7 0 1.46V0h1.46L7 5.54 12.54 0H14v1.46L8.46 7z"
+  })));
+}
+
+var _path$f;
+
+function _extends$f() { _extends$f = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$f.apply(this, arguments); }
+
+function SvgConfig(props) {
+  return /*#__PURE__*/createElement("svg", _extends$f({
+    width: 20,
+    height: 20,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$f || (_path$f = /*#__PURE__*/createElement("path", {
+    d: "M9.73 6a4 4 0 110 8 4 4 0 010-8zm0 2a2 2 0 100 4 2 2 0 000-4zm-2 12c-.25 0-.46-.18-.5-.42l-.37-2.65c-.63-.25-1.17-.59-1.69-.99l-2.49 1.01c-.22.08-.49 0-.61-.22l-2-3.46a.493.493 0 01.12-.64l2.11-1.66-.07-.97.07-1L.19 7.37a.493.493 0 01-.12-.64l2-3.46c.12-.22.39-.31.61-.22l2.49 1c.52-.39 1.06-.73 1.69-.98L7.23.42c.04-.24.25-.42.5-.42h4c.25 0 .46.18.5.42l.37 2.65c.63.25 1.17.59 1.69.98l2.49-1c.22-.09.49 0 .61.22l2 3.46c.13.22.07.49-.12.64L17.16 9l.07 1-.07 1 2.11 1.63c.19.15.25.42.12.64l-2 3.46c-.12.22-.39.31-.61.22l-2.49-1c-.52.39-1.06.73-1.69.98l-.37 2.65c-.04.24-.25.42-.5.42h-4zM8.98 2l-.37 2.61c-1.2.25-2.26.89-3.03 1.78L3.17 5.35l-.75 1.3L4.53 8.2a5.55 5.55 0 000 3.6l-2.12 1.56.75 1.3 2.43-1.04c.77.88 1.82 1.52 3.01 1.76L8.97 18h1.52l.37-2.61c1.19-.25 2.24-.89 3.01-1.77l2.43 1.04.75-1.3-2.12-1.55c.4-1.17.4-2.44 0-3.61l2.11-1.55-.75-1.3-2.41 1.04a5.42 5.42 0 00-3.03-1.77L10.48 2h-1.5z"
+  })));
+}
+
+var _path$e;
+
+function _extends$e() { _extends$e = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$e.apply(this, arguments); }
+
+function SvgDocCheck(props) {
+  return /*#__PURE__*/createElement("svg", _extends$e({
+    width: 20,
+    height: 20,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$e || (_path$e = /*#__PURE__*/createElement("path", {
+    d: "M18 0H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2zm0 14H6V2h12v12zm-4 4v2H2a2 2 0 01-2-2V5h2v13h12zm2.53-11.94L15.47 5l-4.88 4.88-2.12-2.12-1.06 1.06L10.59 12l5.94-5.94z"
+  })));
+}
+
+var _path$d;
+
+function _extends$d() { _extends$d = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$d.apply(this, arguments); }
+
+function SvgDoc(props) {
+  return /*#__PURE__*/createElement("svg", _extends$d({
+    width: 22,
+    height: 22,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$d || (_path$d = /*#__PURE__*/createElement("path", {
+    d: "M15 14H8v-2h7v2zm3-4H8V8h10v2zm0-4H8V4h10v2zM2 4v16h16v2H2a2 2 0 01-2-2V4h2zm18-4a2 2 0 012 2v14c0 1.11-.89 2-2 2H6a2 2 0 01-2-2V2c0-1.11.89-2 2-2h14zM6 2v14h14V2H6z"
+  })));
+}
+
+var _path$c;
+
+function _extends$c() { _extends$c = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$c.apply(this, arguments); }
+
+function SvgGift(props) {
+  return /*#__PURE__*/createElement("svg", _extends$c({
+    width: 22,
+    height: 20,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$c || (_path$c = /*#__PURE__*/createElement("path", {
+    d: "M21 10v8a2 2 0 01-2 2H3a2 2 0 01-2-2v-8a1 1 0 01-1-1V6a2 2 0 012-2h3.17A3 3 0 018 0c1 0 1.88.5 2.43 1.24v-.01L11 2l.57-.77v.01C12.12.5 13 0 14 0a3 3 0 012.83 4H20a2 2 0 012 2v3a1 1 0 01-1 1zM3 18h7v-8H3v8zm16 0v-8h-7v8h7zM8 2a1 1 0 100 2 1 1 0 000-2zm6 0a1 1 0 100 2 1 1 0 000-2zM2 6v2h8V6H2zm10 0v2h8V6h-8z"
   })));
 }
 
@@ -255,14 +375,14 @@ var _path$b;
 
 function _extends$b() { _extends$b = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$b.apply(this, arguments); }
 
-function SvgArrowLeft(props) {
+function SvgLifeboat(props) {
   return /*#__PURE__*/createElement("svg", _extends$b({
-    width: 8,
-    height: 12,
+    width: 20,
+    height: 20,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$b || (_path$b = /*#__PURE__*/createElement("path", {
-    d: "M7.41 1.41L2.83 6l4.58 4.59L6 12 0 6l6-6 1.41 1.41z"
+    d: "M17.79 13.41c.95-2.17.95-4.66 0-6.82l-2.74 1.24c.6 1.38.6 2.95.01 4.34l2.73 1.24zm-4.37-11.2a8.54 8.54 0 00-6.83 0l1.24 2.73c1.39-.59 2.96-.59 4.35.01l1.24-2.74zM2.21 6.58a8.564 8.564 0 000 6.84l2.74-1.25c-.6-1.38-.6-2.96 0-4.35L2.21 6.58zm4.38 11.21a8.5 8.5 0 006.83-.01l-1.24-2.73a5.5 5.5 0 01-4.34.01l-1.25 2.73zM10 0a10 10 0 110 20 10 10 0 010-20zm0 6a4 4 0 100 8 4 4 0 000-8z"
   })));
 }
 
@@ -270,14 +390,14 @@ var _path$a;
 
 function _extends$a() { _extends$a = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$a.apply(this, arguments); }
 
-function SvgArrowRight(props) {
+function SvgLock(props) {
   return /*#__PURE__*/createElement("svg", _extends$a({
-    width: 8,
-    height: 12,
+    width: 16,
+    height: 21,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$a || (_path$a = /*#__PURE__*/createElement("path", {
-    d: "M0 10.59L4.58 6 0 1.41 1.41 0l6 6-6 6L0 10.59z"
+    d: "M8 16a2 2 0 01-2-2c0-1.11.89-2 2-2a2 2 0 010 4zm6 3V9H2v10h12zm0-12a2 2 0 012 2v10a2 2 0 01-2 2H2a2 2 0 01-2-2V9c0-1.11.89-2 2-2h1V5a5 5 0 1110 0v2h1zM8 2a3 3 0 00-3 3v2h6V5a3 3 0 00-3-3z"
   })));
 }
 
@@ -285,14 +405,14 @@ var _path$9;
 
 function _extends$9() { _extends$9 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$9.apply(this, arguments); }
 
-function SvgArrowUp(props) {
+function SvgLogout(props) {
   return /*#__PURE__*/createElement("svg", _extends$9({
-    width: 12,
-    height: 8,
+    width: 18,
+    height: 18,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$9 || (_path$9 = /*#__PURE__*/createElement("path", {
-    d: "M10.59 7.41L6 2.83 1.41 7.41 0 6l6-6 6 6-1.41 1.41z"
+    d: "M16 0H2C.89 0 0 .89 0 2v4h2V2h14v14H2v-4H0v4a2 2 0 002 2h14a2 2 0 002-2V2a2 2 0 00-2-2zM7.08 12.58L8.5 14l5-5-5-5-1.42 1.41L9.67 8H0v2h9.67l-2.59 2.58z"
   })));
 }
 
@@ -300,14 +420,14 @@ var _path$8;
 
 function _extends$8() { _extends$8 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$8.apply(this, arguments); }
 
-function SvgClose(props) {
+function SvgEyeHidden(props) {
   return /*#__PURE__*/createElement("svg", _extends$8({
-    width: 14,
-    height: 14,
+    width: 24,
+    height: 24,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$8 || (_path$8 = /*#__PURE__*/createElement("path", {
-    d: "M8.46 7L14 12.54V14h-1.46L7 8.46 1.46 14H0v-1.46L5.54 7 0 1.46V0h1.46L7 5.54 12.54 0H14v1.46L8.46 7z"
+    d: "M2 5.27L3.28 4 20 20.72 18.73 22l-3.08-3.08c-1.15.38-2.37.58-3.65.58-5 0-9.27-3.11-11-7.5.69-1.76 1.79-3.31 3.19-4.54L2 5.27zM12 9a3 3 0 012.83 4L11 9.17A3 3 0 0112 9zm0-4.5c5 0 9.27 3.11 11 7.5a11.79 11.79 0 01-4 5.19l-1.42-1.43A9.862 9.862 0 0020.82 12 9.821 9.821 0 0012 6.5c-1.09 0-2.16.18-3.16.5L7.3 5.47c1.44-.62 3.03-.97 4.7-.97zM3.18 12A9.821 9.821 0 0012 17.5c.69 0 1.37-.07 2-.21L11.72 15A3.064 3.064 0 019 12.28L5.6 8.87c-.99.85-1.82 1.91-2.42 3.13z"
   })));
 }
 
@@ -315,14 +435,14 @@ var _path$7;
 
 function _extends$7() { _extends$7 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$7.apply(this, arguments); }
 
-function SvgEyeHidden(props) {
+function SvgNotification(props) {
   return /*#__PURE__*/createElement("svg", _extends$7({
-    width: 24,
-    height: 24,
+    width: 16,
+    height: 20,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$7 || (_path$7 = /*#__PURE__*/createElement("path", {
-    d: "M2 5.27L3.28 4 20 20.72 18.73 22l-3.08-3.08c-1.15.38-2.37.58-3.65.58-5 0-9.27-3.11-11-7.5.69-1.76 1.79-3.31 3.19-4.54L2 5.27zM12 9a3 3 0 012.83 4L11 9.17A3 3 0 0112 9zm0-4.5c5 0 9.27 3.11 11 7.5a11.79 11.79 0 01-4 5.19l-1.42-1.43A9.862 9.862 0 0020.82 12 9.821 9.821 0 0012 6.5c-1.09 0-2.16.18-3.16.5L7.3 5.47c1.44-.62 3.03-.97 4.7-.97zM3.18 12A9.821 9.821 0 0012 17.5c.69 0 1.37-.07 2-.21L11.72 15A3.064 3.064 0 019 12.28L5.6 8.87c-.99.85-1.82 1.91-2.42 3.13z"
+    d: "M8 19.5c1.1 0 2-.9 2-2H6c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V1.5C9.5.67 8.83 0 8 0S6.5.67 6.5 1.5v.68C3.64 2.86 2 5.42 2 8.5v5l-2 2v1h16v-1l-2-2zm-2 1H4v-6C4 6.02 5.51 4 8 4s4 2.02 4 4.5v6z"
   })));
 }
 
@@ -330,14 +450,14 @@ var _path$6;
 
 function _extends$6() { _extends$6 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$6.apply(this, arguments); }
 
-function SvgNotification(props) {
+function SvgPatients(props) {
   return /*#__PURE__*/createElement("svg", _extends$6({
-    width: 16,
-    height: 20,
+    width: 22,
+    height: 14,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
   }, props), _path$6 || (_path$6 = /*#__PURE__*/createElement("path", {
-    d: "M8 19.5c1.1 0 2-.9 2-2H6c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V1.5C9.5.67 8.83 0 8 0S6.5.67 6.5 1.5v.68C3.64 2.86 2 5.42 2 8.5v5l-2 2v1h16v-1l-2-2zm-2 1H4v-6C4 6.02 5.51 4 8 4s4 2.02 4 4.5v6z"
+    d: "M15.5 8c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C4.33 8 0 9.08 0 11.25V14h22v-2.75C22 9.08 17.67 8 15.5 8zm-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75v1.25zm9 0H13v-1.25c0-.46-.2-.86-.52-1.22.88-.3 1.96-.53 3.02-.53 2.44 0 5 1.21 5 1.75v1.25zM6.5 7C8.43 7 10 5.43 10 3.5S8.43 0 6.5 0 3 1.57 3 3.5 4.57 7 6.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 5.5C17.43 7 19 5.43 19 3.5S17.43 0 15.5 0 12 1.57 12 3.5 13.57 7 15.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"
   })));
 }
 
@@ -345,43 +465,28 @@ var _path$5;
 
 function _extends$5() { _extends$5 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$5.apply(this, arguments); }
 
-function SvgPatients(props) {
-  return /*#__PURE__*/createElement("svg", _extends$5({
-    width: 22,
-    height: 14,
-    fill: "#4C5867",
-    xmlns: "http://www.w3.org/2000/svg"
-  }, props), _path$5 || (_path$5 = /*#__PURE__*/createElement("path", {
-    d: "M15.5 8c-1.2 0-3.07.34-4.5 1-1.43-.67-3.3-1-4.5-1C4.33 8 0 9.08 0 11.25V14h22v-2.75C22 9.08 17.67 8 15.5 8zm-4 4.5h-10v-1.25c0-.54 2.56-1.75 5-1.75s5 1.21 5 1.75v1.25zm9 0H13v-1.25c0-.46-.2-.86-.52-1.22.88-.3 1.96-.53 3.02-.53 2.44 0 5 1.21 5 1.75v1.25zM6.5 7C8.43 7 10 5.43 10 3.5S8.43 0 6.5 0 3 1.57 3 3.5 4.57 7 6.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 5.5C17.43 7 19 5.43 19 3.5S17.43 0 15.5 0 12 1.57 12 3.5 13.57 7 15.5 7zm0-5.5c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"
-  })));
-}
-
-var _path$4;
-
-function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
-
 function SvgPrint(props) {
-  return /*#__PURE__*/createElement("svg", _extends$4({
+  return /*#__PURE__*/createElement("svg", _extends$5({
     width: 20,
     height: 18,
     fill: "#4C5867",
     xmlns: "http://www.w3.org/2000/svg"
-  }, props), _path$4 || (_path$4 = /*#__PURE__*/createElement("path", {
+  }, props), _path$5 || (_path$5 = /*#__PURE__*/createElement("path", {
     d: "M17 5H3C1.34 5 0 6.34 0 8v6h4v4h12v-4h4V8c0-1.66-1.34-3-3-3zm-3 11H6v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H4v4h12V0z"
   })));
 }
 
-var _path$3, _path2$1, _path3$1, _path4$1, _path5$1, _defs$1;
+var _path$4, _path2$1, _path3$1, _path4$1, _path5$1, _defs$1;
 
-function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
+function _extends$4() { _extends$4 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$4.apply(this, arguments); }
 
 function SvgProntmedLogoDarkBg(props) {
-  return /*#__PURE__*/createElement("svg", _extends$3({
+  return /*#__PURE__*/createElement("svg", _extends$4({
     width: 185,
     height: 48,
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg"
-  }, props), _path$3 || (_path$3 = /*#__PURE__*/createElement("path", {
+  }, props), _path$4 || (_path$4 = /*#__PURE__*/createElement("path", {
     d: "M64.156 17.407c-1.005-.562-2.13-.858-3.401-.858-1.893 0-3.402.74-4.526 2.219l-.354-2.07H53.33V36.04h2.928v-7.394a4.463 4.463 0 001.834 1.538c.769.384 1.656.562 2.691.562 1.272 0 2.396-.296 3.402-.888 1.005-.591 1.774-1.42 2.336-2.514.563-1.065.829-2.337.829-3.727 0-1.449-.296-2.72-.829-3.786-.591-1.035-1.36-1.863-2.366-2.425zm-.946 9.583c-.74.858-1.745 1.302-2.958 1.302s-2.189-.444-2.928-1.302c-.74-.858-1.124-2.011-1.124-3.401 0-1.36.384-2.455 1.124-3.313.74-.828 1.715-1.272 2.928-1.272 1.213 0 2.189.414 2.958 1.272.74.858 1.124 1.952 1.124 3.342 0 1.39-.355 2.514-1.124 3.372zM76.106 17.26a4.503 4.503 0 00-1.538 1.537l-.326-2.1H68.77V19.3h2.87v8.725h-2.87v2.603h9.051v-2.603h-3.253v-4.377c0-1.213.266-2.218.828-3.017.532-.799 1.42-1.183 2.632-1.183h1.301v-2.75h-.65c-1.094 0-1.952.206-2.573.561zM90.805 17.437c-1.064-.592-2.306-.888-3.697-.888-1.39 0-2.632.296-3.697.888a6.422 6.422 0 00-2.514 2.514c-.592 1.064-.887 2.307-.887 3.697 0 1.42.295 2.662.887 3.727.592 1.064 1.42 1.922 2.514 2.514 1.094.591 2.307.887 3.697.887 1.39 0 2.633-.296 3.697-.887 1.065-.592 1.923-1.42 2.515-2.514.591-1.065.887-2.337.887-3.727 0-1.39-.296-2.633-.887-3.697-.592-1.065-1.42-1.923-2.514-2.514zm-.71 9.553c-.739.858-1.744 1.302-2.987 1.302-1.242 0-2.218-.444-2.957-1.302-.74-.858-1.124-1.982-1.124-3.342s.384-2.455 1.124-3.342c.739-.858 1.715-1.302 2.957-1.302 1.243 0 2.219.444 2.988 1.302.74.857 1.124 1.981 1.124 3.342 0 1.36-.385 2.484-1.124 3.342zM103.908 16.55c-1.922 0-3.401.65-4.466 1.981l-.325-1.834h-2.544V30.6h2.928v-7.01c0-1.42.326-2.514 1.006-3.342.651-.8 1.568-1.213 2.721-1.213 1.095 0 1.923.355 2.485 1.035.562.68.828 1.686.828 3.017v7.513h2.958v-7.661c0-2.248-.533-3.875-1.568-4.88-1.035-1.006-2.396-1.509-4.023-1.509zM116.331 27.7c-.207-.237-.325-.621-.325-1.153V19.3h3.342v-2.573h-3.342v-3.343h-2.958v13.458c0 1.272.296 2.248.917 2.84.621.62 1.567.917 2.898.917h2.84v-2.574h-2.219c-.562 0-.916-.088-1.153-.325zM144.518 27.7c-.207-.237-.325-.621-.325-1.153V22.76c0-2.16-.473-3.757-1.449-4.733-.947-.976-2.189-1.479-3.727-1.479-1.124 0-2.07.237-2.869.68a5.058 5.058 0 00-1.923 1.864 3.98 3.98 0 00-1.715-1.893c-.74-.414-1.597-.621-2.573-.621-1.716.03-3.076.68-4.082 1.982l-.325-1.834h-2.544v13.901h2.928v-7.453c0-1.243.296-2.248.887-2.988.592-.74 1.391-1.124 2.367-1.124.946 0 1.686.326 2.188.947.503.621.74 1.567.74 2.78v7.838h2.958v-7.512c0-1.243.295-2.219.887-2.958.591-.71 1.39-1.065 2.396-1.065.946 0 1.686.325 2.159.946.473.622.71 1.538.739 2.722v4.11c0 1.273.296 2.249.917 2.84.621.621 1.568.917 2.899.917h1.065v-2.573h-.503c-.533-.03-.888-.118-1.095-.355zM157.414 17.348c-1.035-.532-2.218-.828-3.549-.828s-2.485.296-3.52.887a6.062 6.062 0 00-2.396 2.485c-.562 1.064-.857 2.336-.857 3.756s.295 2.662.887 3.727a6.163 6.163 0 002.514 2.484c1.065.592 2.337.887 3.786.887 1.656 0 3.046-.443 4.17-1.36s1.805-2.07 2.041-3.49h-2.928c-.207.769-.621 1.39-1.213 1.804-.621.414-1.39.65-2.277.65-1.154 0-2.071-.354-2.751-1.064-.68-.71-1.065-1.656-1.153-2.87v-.147h10.5c.059-.384.088-.74.088-1.124-.029-1.33-.325-2.514-.917-3.49a6.712 6.712 0 00-2.425-2.307zm-7.158 4.791c.119-.976.503-1.774 1.213-2.336.71-.592 1.538-.887 2.485-.887 1.035 0 1.892.295 2.573.857.68.562 1.094 1.36 1.212 2.366h-7.483zM173.652 12.142v6.478c-.473-.651-1.094-1.154-1.834-1.538-.769-.385-1.656-.562-2.662-.562-1.242 0-2.366.296-3.372.887-1.005.592-1.774 1.42-2.336 2.514-.562 1.065-.858 2.337-.858 3.727 0 1.45.266 2.721.828 3.786.562 1.065 1.331 1.893 2.337 2.484 1.005.562 2.129.858 3.401.858 1.923 0 3.431-.74 4.526-2.248l.355 2.1h2.543V12.142h-2.928zm-1.094 14.878c-.74.858-1.716 1.271-2.928 1.271-1.213 0-2.189-.443-2.929-1.3-.739-.859-1.124-1.983-1.124-3.343 0-1.36.385-2.455 1.124-3.342.74-.858 1.716-1.302 2.929-1.302 1.212 0 2.188.444 2.928 1.302.739.857 1.124 1.981 1.124 3.371s-.355 2.515-1.124 3.343z",
     fill: "#fff"
   })), _path2$1 || (_path2$1 = /*#__PURE__*/createElement("path", {
@@ -489,17 +594,17 @@ function SvgProntmedLogoDarkBg(props) {
   })))));
 }
 
-var _path$2, _path2, _path3, _path4, _path5, _defs;
+var _path$3, _path2, _path3, _path4, _path5, _defs;
 
-function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
+function _extends$3() { _extends$3 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$3.apply(this, arguments); }
 
 function SvgProntmedLogoLightBg(props) {
-  return /*#__PURE__*/createElement("svg", _extends$2({
+  return /*#__PURE__*/createElement("svg", _extends$3({
     width: 176,
     height: 43,
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg"
-  }, props), _path$2 || (_path$2 = /*#__PURE__*/createElement("path", {
+  }, props), _path$3 || (_path$3 = /*#__PURE__*/createElement("path", {
     d: "M63.156 15.407c-1.005-.562-2.13-.858-3.401-.858-1.893 0-3.402.74-4.526 2.219l-.354-2.07H52.33V34.04h2.928v-7.394a4.463 4.463 0 001.834 1.538c.769.384 1.656.562 2.691.562 1.272 0 2.396-.296 3.402-.888 1.006-.591 1.774-1.42 2.336-2.514.563-1.065.829-2.337.829-3.727 0-1.449-.296-2.72-.829-3.786-.591-1.035-1.36-1.863-2.366-2.425zm-.946 9.583c-.74.858-1.745 1.302-2.958 1.302s-2.189-.444-2.928-1.302c-.74-.858-1.124-2.011-1.124-3.401 0-1.36.384-2.455 1.124-3.313.74-.828 1.715-1.272 2.928-1.272 1.213 0 2.189.414 2.958 1.272.74.858 1.124 1.952 1.124 3.342 0 1.39-.355 2.514-1.124 3.372zM75.106 15.26a4.503 4.503 0 00-1.538 1.537l-.326-2.1H67.77V17.3h2.87v8.725h-2.87v2.603h9.051v-2.603h-3.253v-4.377c0-1.213.266-2.218.828-3.017.532-.799 1.42-1.183 2.632-1.183h1.301v-2.75h-.65c-1.094 0-1.952.206-2.573.561zM89.805 15.437c-1.064-.592-2.306-.888-3.697-.888-1.39 0-2.632.296-3.697.888a6.422 6.422 0 00-2.514 2.514c-.592 1.064-.887 2.307-.887 3.697 0 1.42.295 2.662.887 3.727.592 1.064 1.42 1.922 2.514 2.514 1.094.591 2.307.887 3.697.887 1.39 0 2.633-.296 3.697-.887 1.065-.592 1.923-1.42 2.515-2.514.591-1.065.887-2.337.887-3.727 0-1.39-.296-2.633-.887-3.697-.592-1.065-1.42-1.923-2.514-2.514zm-.71 9.553c-.739.858-1.744 1.302-2.987 1.302-1.242 0-2.218-.444-2.957-1.302-.74-.858-1.124-1.982-1.124-3.342s.384-2.455 1.124-3.342c.739-.858 1.715-1.302 2.957-1.302 1.243 0 2.219.444 2.988 1.302.74.857 1.124 1.981 1.124 3.342 0 1.36-.385 2.484-1.124 3.342zM102.908 14.55c-1.922 0-3.401.65-4.466 1.981l-.325-1.834h-2.544V28.6h2.928v-7.01c0-1.42.326-2.514 1.006-3.342.651-.8 1.568-1.213 2.721-1.213 1.095 0 1.923.355 2.485 1.035.562.68.828 1.686.828 3.017v7.513h2.958v-7.661c0-2.248-.533-3.875-1.568-4.88-1.035-1.006-2.396-1.509-4.023-1.509zM115.331 25.7c-.207-.237-.325-.621-.325-1.153V17.3h3.342v-2.573h-3.342v-3.343h-2.958v13.458c0 1.272.296 2.248.917 2.84.621.62 1.567.917 2.898.917h2.84v-2.574h-2.219c-.562 0-.916-.088-1.153-.325zM143.518 25.7c-.207-.237-.325-.621-.325-1.153V20.76c0-2.16-.473-3.757-1.449-4.733-.947-.976-2.189-1.479-3.727-1.479-1.124 0-2.07.237-2.869.68a5.058 5.058 0 00-1.923 1.864 3.98 3.98 0 00-1.715-1.893c-.74-.414-1.597-.621-2.573-.621-1.716.03-3.076.68-4.082 1.982l-.325-1.834h-2.544v13.901h2.928v-7.453c0-1.243.296-2.248.887-2.988.592-.74 1.391-1.124 2.367-1.124.946 0 1.686.326 2.188.947.503.621.74 1.567.74 2.78v7.838h2.958v-7.512c0-1.243.295-2.219.887-2.958.591-.71 1.39-1.065 2.396-1.065.946 0 1.686.325 2.159.946.473.622.71 1.538.739 2.722v4.11c0 1.273.296 2.249.917 2.84.621.621 1.568.917 2.899.917h1.065v-2.573h-.503c-.533-.03-.888-.118-1.095-.355zM156.414 15.348c-1.035-.533-2.218-.828-3.549-.828s-2.485.296-3.52.887a6.062 6.062 0 00-2.396 2.485c-.562 1.064-.857 2.336-.857 3.756s.295 2.662.887 3.727a6.163 6.163 0 002.514 2.484c1.065.592 2.337.887 3.786.887 1.656 0 3.046-.443 4.17-1.36s1.805-2.07 2.041-3.49h-2.928c-.207.769-.621 1.39-1.213 1.804-.621.414-1.39.65-2.277.65-1.154 0-2.071-.354-2.751-1.064-.68-.71-1.065-1.656-1.153-2.87v-.147h10.5c.059-.384.088-.74.088-1.124-.029-1.33-.325-2.514-.917-3.49a6.712 6.712 0 00-2.425-2.307zm-7.158 4.791c.119-.976.503-1.774 1.213-2.336.71-.592 1.538-.887 2.485-.887 1.035 0 1.892.295 2.573.857.68.562 1.094 1.36 1.212 2.366h-7.483zM172.652 10.142v6.478c-.473-.651-1.094-1.154-1.834-1.538-.769-.385-1.656-.562-2.662-.562-1.242 0-2.366.296-3.372.887-1.005.592-1.774 1.42-2.336 2.514-.562 1.065-.858 2.337-.858 3.727 0 1.45.266 2.721.828 3.786.562 1.065 1.331 1.893 2.337 2.484 1.005.562 2.129.858 3.401.858 1.923 0 3.431-.74 4.526-2.248l.355 2.1h2.543V10.142h-2.928zm-1.094 14.878c-.74.858-1.716 1.271-2.928 1.271-1.213 0-2.189-.443-2.929-1.3-.739-.859-1.124-1.983-1.124-3.343 0-1.36.385-2.455 1.124-3.342.74-.858 1.716-1.302 2.929-1.302 1.212 0 2.188.444 2.928 1.302.739.857 1.124 1.981 1.124 3.371s-.355 2.515-1.124 3.343z",
     fill: "#3D5C86"
   })), _path2 || (_path2 = /*#__PURE__*/createElement("path", {
@@ -607,12 +712,12 @@ function SvgProntmedLogoLightBg(props) {
   })))));
 }
 
-var _path$1;
+var _path$2;
 
-function _extends$1() { _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1.apply(this, arguments); }
+function _extends$2() { _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$2.apply(this, arguments); }
 
 function SvgSpinner(props) {
-  return /*#__PURE__*/createElement("svg", _extends$1({
+  return /*#__PURE__*/createElement("svg", _extends$2({
     xmlns: "http://www.w3.org/2000/svg",
     width: 25,
     height: 25,
@@ -622,8 +727,23 @@ function SvgSpinner(props) {
       background: "0 0"
     },
     display: "block"
-  }, props), _path$1 || (_path$1 = /*#__PURE__*/createElement("path", {
+  }, props), _path$2 || (_path$2 = /*#__PURE__*/createElement("path", {
     d: "M43.935 25.145c0-10.318-8.364-18.683-18.683-18.683-10.318 0-18.683 8.365-18.683 18.683h4.068c0-8.071 6.543-14.615 14.615-14.615s14.615 6.543 14.615 14.615h4.068z"
+  })));
+}
+
+var _path$1;
+
+function _extends$1() { _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$1.apply(this, arguments); }
+
+function SvgUser(props) {
+  return /*#__PURE__*/createElement("svg", _extends$1({
+    width: 20,
+    height: 20,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$1 || (_path$1 = /*#__PURE__*/createElement("path", {
+    d: "M10 0a10 10 0 100 20 10 10 0 000-20zm0 6.39A9.973 9.973 0 0015.42 8c.78 0 1.53-.09 2.25-.26.21.71.33 1.47.33 2.26 0 4.41-3.59 8-8 8-3 0-5.61-1.66-7-4.11L4.75 12v-1a1.25 1.25 0 012.5 0v1H10V6.39zm4 3.36a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"
   })));
 }
 
@@ -648,6 +768,13 @@ var iconDictionary = {
     'arrow-right': SvgArrowRight,
     'arrow-up': SvgArrowUp,
     close: SvgClose,
+    config: SvgConfig,
+    'doc-check': SvgDocCheck,
+    doc: SvgDoc,
+    gift: SvgGift,
+    lifeboat: SvgLifeboat,
+    lock: SvgLock,
+    logout: SvgLogout,
     hidden: SvgEyeHidden,
     notification: SvgNotification,
     patients: SvgPatients,
@@ -655,6 +782,7 @@ var iconDictionary = {
     'prontmed-logo-dark-bg': SvgProntmedLogoDarkBg,
     'prontmed-logo-light-bg': SvgProntmedLogoLightBg,
     spinner: SvgSpinner,
+    user: SvgUser,
     visible: SvgEyeVisible,
 };
 
@@ -684,7 +812,7 @@ var handleBGColor = function (_a) {
             case 'primary':
                 return theme.colors.primary.green40;
             case 'secondary':
-                return theme.colors.primary.gray40;
+                return theme.colors.primary.grey40;
             default:
                 return theme.colors.neutrals.lightergrey;
         }
@@ -693,7 +821,7 @@ var handleBGColor = function (_a) {
         case 'primary':
             return theme.colors.primary.green;
         case 'secondary':
-            return theme.colors.primary.gray;
+            return theme.colors.primary.grey;
         default:
             return theme.colors.neutrals.lightgrey;
     }
@@ -705,7 +833,7 @@ var handleTextColor = function (_a) {
             case 'primary':
                 return theme.colors.primary.green40;
             case 'secondary':
-                return theme.colors.primary.gray40;
+                return theme.colors.primary.grey40;
             default:
                 return theme.colors.neutrals.lightgrey;
         }
@@ -715,7 +843,7 @@ var handleTextColor = function (_a) {
             case 'primary':
                 return theme.colors.primary.green;
             case 'secondary':
-                return theme.colors.primary.gray;
+                return theme.colors.primary.grey;
             default:
                 return theme.colors.neutrals.darkestgrey;
         }
@@ -733,7 +861,7 @@ var handleBorderColor = function (_a) {
         case 'primary':
             return theme.colors.primary.green;
         case 'secondary':
-            return theme.colors.primary.gray;
+            return theme.colors.primary.grey;
         default:
             return theme.colors.neutrals.lightgrey;
     }
@@ -812,16 +940,15 @@ var ButtonLink = function (_a) {
     return (React.createElement(Link, __assign({ as: element }, rest), children));
 };
 
-var Container$1 = styled.div(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject([""], [""])));
-var ReferenceContainer = styled.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  display: flex;\n"], ["\n  display: flex;\n"])));
-var PopperContainer = styled.div(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n  display: flex;\n  z-index: 1;\n"], ["\n  display: flex;\n  z-index: 1;\n"])));
-var DropdownItemsContainer = styled.div(templateObject_5$1 || (templateObject_5$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
+var ReferenceContainer = styled.div(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  display: flex;\n"], ["\n  display: flex;\n"])));
+var PopperContainer = styled.div(templateObject_2$2 || (templateObject_2$2 = __makeTemplateObject(["\n  display: flex;\n  z-index: 1;\n"], ["\n  display: flex;\n  z-index: 1;\n"])));
+var DropdownItemsContainer = styled.div(templateObject_4$1 || (templateObject_4$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme, visible = _a.visible;
-    return css(templateObject_4$1 || (templateObject_4$1 = __makeTemplateObject(["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "], ["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "])), theme.shadows.popper, theme.colors.neutrals.white, visible ? 'flex' : 'none', theme.spacing(1));
+    return css(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "], ["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "])), theme.shadows.popper, theme.colors.neutrals.white, visible ? 'flex' : 'none', theme.spacing(1));
 });
-var DropdownItem = styled.div(templateObject_6$1 || (templateObject_6$1 = __makeTemplateObject([""], [""])));
-var templateObject_1$3, templateObject_2$2, templateObject_3$1, templateObject_4$1, templateObject_5$1, templateObject_6$1;
+var DropdownItem = styled.div(templateObject_5$1 || (templateObject_5$1 = __makeTemplateObject([""], [""])));
+var templateObject_1$3, templateObject_2$2, templateObject_3$1, templateObject_4$1, templateObject_5$1;
 
 var initialOffset = {
     horizontal: 0,
@@ -840,28 +967,14 @@ var initialOffset = {
  */
 var Dropdown = function (_a) {
     var children = _a.children, anchorElement = _a.anchorElement, _b = _a.placement, placement = _b === void 0 ? 'bottom-start' : _b, _c = _a.offset, _d = _c === void 0 ? initialOffset : _c, horizontal = _d.horizontal, vertical = _d.vertical, _e = _a.trigger, trigger = _e === void 0 ? 'hover' : _e, rest = __rest(_a, ["children", "anchorElement", "placement", "offset", "trigger"]);
-    document.getElementById('root');
+    var containerElement = document.getElementById('root');
     var referenceElement = useRef(null);
     var popperElement = useRef(null);
     var _f = useState(false), visible = _f[0], setVisibility = _f[1];
-    var actions = function () {
-        if (trigger === 'click') {
-            return { onClick: function () { return setVisibility(function (currentState) { return !currentState; }); } };
-        }
-        return {
-            onMouseEnter: function () { return setVisibility(true); },
-        };
-    };
     var _g = usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
         placement: placement,
+        strategy: 'absolute',
         modifiers: [
-            {
-                name: 'preventOverflow',
-                enabled: true,
-                options: {
-                    boundary: document.getElementById('root'),
-                },
-            },
             {
                 name: 'offset',
                 enabled: true,
@@ -870,11 +983,11 @@ var Dropdown = function (_a) {
                 },
             },
             {
-                name: 'flip',
-                enabled: true,
+                name: 'preventOverflow',
+                enabled: false,
             },
         ],
-    }), styles = _g.styles, attributes = _g.attributes;
+    }), styles = _g.styles, attributes = _g.attributes, update = _g.update;
     useEffect(function () {
         var handleDocumentClick = function (_a) {
             var _b, _c;
@@ -893,14 +1006,29 @@ var Dropdown = function (_a) {
             document.removeEventListener(eventListener, handleDocumentClick);
         };
     }, []);
-    var renderDropdownContent = children &&
-        React.Children.map(children, function (child) {
-            return (React.createElement(DropdownItem, { onClick: function () { return setVisibility(false); } }, child));
-        });
-    return (React.createElement(Container$1, __assign({}, rest),
+    var updatePopperPosition = function () { return update && update(); };
+    var actions = function () {
+        if (trigger === 'click') {
+            return {
+                onClick: function () {
+                    setVisibility(function (currentState) { return !currentState; });
+                    updatePopperPosition();
+                },
+            };
+        }
+        return {
+            onMouseEnter: function () {
+                setVisibility(true);
+                updatePopperPosition();
+            },
+        };
+    };
+    return (React.createElement("div", null,
         React.createElement(ReferenceContainer, __assign({ ref: referenceElement }, actions()), anchorElement),
         ReactDOM.createPortal(React.createElement(PopperContainer, __assign({ ref: popperElement, style: styles.popper }, attributes.popper),
-            React.createElement(DropdownItemsContainer, { style: styles.offset, visible: visible }, renderDropdownContent)), document.getElementById('root'))));
+            React.createElement(DropdownItemsContainer, __assign({ style: styles.offset, visible: visible }, rest), React.Children.map(children, function (child) {
+                return (React.createElement(DropdownItem, { onClick: function () { return setVisibility(false); } }, child));
+            }))), containerElement)));
 };
 
 var Text = styled.p(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
