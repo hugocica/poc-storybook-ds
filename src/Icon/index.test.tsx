@@ -1,11 +1,11 @@
-import React from "react";
-import { renderWithProviders, screen } from "setupTests";
-import { colors } from "../theme";
+import React from 'react';
+import { renderWithProviders, screen } from 'setupTests';
+import { colors } from '../theme';
 
-import Icon from "./index";
+import Icon from './index';
 
-describe("Icon Component", () => {
-  it("should render close button with color neutrals-darkest-gray", () => {
+describe('Icon Component', () => {
+  it('should render close button with color neutrals-darkest-grey', () => {
     renderWithProviders(<Icon name="close" />);
 
     // screen.debug();

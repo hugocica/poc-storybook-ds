@@ -39,8 +39,8 @@ export declare const colors: {
     primary: {
         green: string;
         green40: string;
-        gray: string;
-        gray40: string;
+        grey: string;
+        grey40: string;
     };
     secondary: {
         purple: string;
@@ -62,12 +62,12 @@ export declare const colors: {
         lightergrey: string;
         lightergrey25: string;
     };
-    gray1: string;
-    gray2: string;
-    gray3: string;
-    gray4: string;
-    gray5: string;
-    gray6: string;
+    grey1: string;
+    grey2: string;
+    grey3: string;
+    grey4: string;
+    grey5: string;
+    grey6: string;
     error: string;
     blue100: string;
     lightblue: string;
@@ -160,8 +160,8 @@ declare const _default: {
         primary: {
             green: string;
             green40: string;
-            gray: string;
-            gray40: string;
+            grey: string;
+            grey40: string;
         };
         secondary: {
             purple: string;
@@ -183,12 +183,12 @@ declare const _default: {
             lightergrey: string;
             lightergrey25: string;
         };
-        gray1: string;
-        gray2: string;
-        gray3: string;
-        gray4: string;
-        gray5: string;
-        gray6: string;
+        grey1: string;
+        grey2: string;
+        grey3: string;
+        grey4: string;
+        grey5: string;
+        grey6: string;
         error: string;
         blue100: string;
         lightblue: string;

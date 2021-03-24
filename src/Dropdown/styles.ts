@@ -1,9 +1,12 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div``;
+export const ReferenceContainer = styled.div`
+  display: flex;
+`;
 
 export const PopperContainer = styled.div`
   display: flex;
+  z-index: 1;
 `;
 
 type TDropdownItemsContainer = {
