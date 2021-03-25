@@ -137,7 +137,7 @@ const gutter = 8;
 
 const breakpoints = {
   xl: 1440,
-  lg: 1280,
+  lg: 1200,
   md: 1024,
   sm: 768,
   xs: 480,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '../Button';
 import Typography from '../Typography';
@@ -8,15 +8,21 @@ export default {
   title: 'Dropdown',
 };
 
-export const Default = () => (
-  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-    <Dropdown
-      trigger="click"
-      placement="bottom-end"
-      anchorElement={<Button>Dropdown</Button>}
-    >
-      <Typography>item item item item item 1</Typography>
-      <Typography>item 2</Typography>
-    </Dropdown>
-  </div>
-);
+export const Default = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Dropdown
+        open={open}
+        toggleOpen={setOpen}
+        trigger="click"
+        placement="bottom-end"
+        anchorElement={<Button>Dropdown</Button>}
+      >
+        <Typography>item item item item item 1</Typography>
+        <Typography>item 2</Typography>
+      </Dropdown>
+    </div>
+  );
+};

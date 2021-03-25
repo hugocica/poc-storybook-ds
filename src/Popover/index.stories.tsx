@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from '../Button';
 import Icon from '../Icon';
@@ -8,8 +8,12 @@ export default {
   title: 'Popover',
 };
 
-export const Default = () => (
-  <Popover content={<Icon name="user" />}>
-    <Button>Clique aqui</Button>
-  </Popover>
-);
+export const Default = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <Popover open={open} toggleOpen={setOpen} content={<Icon name="user" />}>
+      <Button>Clique aqui</Button>
+    </Popover>
+  );
+};

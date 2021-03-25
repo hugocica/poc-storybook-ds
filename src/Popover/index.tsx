@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -8,6 +8,8 @@ import { IPopoverProps } from './types';
 const Popover: React.FC<IPopoverProps> = ({
   children,
   content,
+  open,
+  toggleOpen,
   placement = 'top',
   trigger = 'hover',
   offset: { horizontal, vertical } = { horizontal: 0, vertical: 0 },
@@ -16,8 +18,6 @@ const Popover: React.FC<IPopoverProps> = ({
   const referenceElement = useRef(null);
   const popperElement = useRef(null);
   const arrowElement = useRef(null);
-
-  const [visible, setVisibility] = useState(false);
 
   const { styles, attributes, update } = usePopper(
     referenceElement?.current,
@@ -48,13 +48,12 @@ const Popover: React.FC<IPopoverProps> = ({
       // if trigger is 'hover' and mouse outside achorElement/dropdown: hide dropdown.
       if (
         referenceElement.current?.contains(target) ||
-        popperElement.current?.contains(target) ||
-        trigger === 'hover'
+        popperElement.current?.contains(target)
       ) {
         return;
       }
 
-      setVisibility(false);
+      toggleOpen(false);
     };
 
     const eventListener = trigger === 'hover' ? 'mousemove' : 'mousedown';
@@ -68,20 +67,22 @@ const Popover: React.FC<IPopoverProps> = ({
 
   const updatePopperPosition = () => update && update();
 
+  useLayoutEffect(() => {
+    updatePopperPosition();
+  }, [open]);
+
   const actions = () => {
     if (trigger === 'click') {
       return {
         onClick: () => {
-          setVisibility((currentState) => !currentState);
-          updatePopperPosition();
+          toggleOpen(!open);
         },
       };
     }
 
     return {
       onMouseEnter: () => {
-        setVisibility(true);
-        updatePopperPosition();
+        toggleOpen(true);
       },
     };
   };
@@ -97,7 +98,7 @@ const Popover: React.FC<IPopoverProps> = ({
           ref={popperElement}
           style={{ ...styles.popper, ...styles.offset }}
           {...attributes.popper}
-          visible={visible}
+          visible={open}
         >
           {content}
         </s.PopoverContent>,
