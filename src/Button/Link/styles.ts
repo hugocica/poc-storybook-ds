@@ -1,18 +1,46 @@
-import styled from 'styled-components';
+import styled, { css, DefaultTheme } from 'styled-components';
 import { ILinkProps } from './types';
 
-export const Link = styled.button<ILinkProps>`
-  background-color: transparent;
-  border: none;
-  color: ${({ theme, disabled }) =>
-    disabled ? theme.colors.primary.green40 : theme.colors.primary.green};
-  cursor: pointer;
-  text-decoration: underline;
+type THandleBG = Pick<ILinkProps, 'variant' | 'disabled'> & {
+  theme: DefaultTheme;
+};
 
-  ${({ theme }) => theme.fonts.body1};
-  &:focus,
-  &:active {
-    border: none;
-    outline: none;
+const handleBGColor = ({ variant, disabled, theme }: THandleBG) => {
+  if (disabled) {
+    switch (variant) {
+      case 'primary':
+        return theme.colors.primary.green40;
+      case 'secondary':
+        return theme.colors.primary.grey40;
+      default:
+        return theme.colors.neutrals.lightergrey;
+    }
   }
+
+  switch (variant) {
+    case 'primary':
+      return theme.colors.primary.green;
+    case 'secondary':
+      return theme.colors.primary.grey;
+    default:
+      return theme.colors.neutrals.lightgrey;
+  }
+};
+
+export const Link = styled.button<ILinkProps>`
+  ${({ theme, disabled, variant }) => css`
+    background-color: transparent;
+    border: none;
+    color: ${handleBGColor({ variant, disabled, theme })};
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+
+    ${theme.fonts.body1};
+    &:focus,
+    &:active {
+      border: none;
+      outline: none;
+    }
+  `}
 `;

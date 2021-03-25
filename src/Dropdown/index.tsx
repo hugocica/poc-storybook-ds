@@ -50,10 +50,6 @@ const Dropdown: React.FC<IDropdownProps> = ({
             offset: [horizontal, vertical],
           },
         },
-        {
-          name: 'preventOverflow',
-          enabled: false,
-        },
       ],
     }
   );
@@ -64,7 +60,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
       // if trigger is 'hover' and mouse outside achorElement/dropdown: hide dropdown.
       if (
         referenceElement.current?.contains(target) ||
-        popperElement.current?.contains(target)
+        (popperElement.current?.contains(target) && trigger === 'hover')
       ) {
         return;
       }
@@ -102,10 +98,8 @@ const Dropdown: React.FC<IDropdownProps> = ({
   };
 
   return (
-    <div>
-      <s.ReferenceContainer ref={referenceElement} {...actions()}>
-        {anchorElement}
-      </s.ReferenceContainer>
+    <s.ReferenceContainer ref={referenceElement} {...actions()}>
+      {anchorElement}
 
       {ReactDOM.createPortal(
         <s.PopperContainer
@@ -129,7 +123,7 @@ const Dropdown: React.FC<IDropdownProps> = ({
         </s.PopperContainer>,
         containerElement
       )}
-    </div>
+    </s.ReferenceContainer>
   );
 };
 

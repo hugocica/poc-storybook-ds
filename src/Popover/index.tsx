@@ -48,7 +48,8 @@ const Popover: React.FC<IPopoverProps> = ({
       // if trigger is 'hover' and mouse outside achorElement/dropdown: hide dropdown.
       if (
         referenceElement.current?.contains(target) ||
-        popperElement.current?.contains(target)
+        popperElement.current?.contains(target) ||
+        trigger === 'hover'
       ) {
         return;
       }

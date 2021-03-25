@@ -1,5 +1,6 @@
 export interface ILinkProps {
   disabled?: boolean;
-  element?: "a" | "button";
+  element?: 'a' | 'button';
   to?: string;
+  variant?: 'primary' | 'secondary';
 }
