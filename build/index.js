@@ -118,7 +118,7 @@ var fonts = {
 var gutter = 8;
 var breakpoints = {
     xl: 1440,
-    lg: 1280,
+    lg: 1200,
     md: 1024,
     sm: 768,
     xs: 480,
@@ -994,12 +994,11 @@ var initialOffset = {
  *  </Dropdown>
  */
 var Dropdown = function (_a) {
-    var children = _a.children, anchorElement = _a.anchorElement, _b = _a.placement, placement = _b === void 0 ? 'bottom-start' : _b, _c = _a.offset, _d = _c === void 0 ? initialOffset : _c, horizontal = _d.horizontal, vertical = _d.vertical, _e = _a.trigger, trigger = _e === void 0 ? 'hover' : _e, rest = __rest(_a, ["children", "anchorElement", "placement", "offset", "trigger"]);
+    var children = _a.children, anchorElement = _a.anchorElement, open = _a.open, toggleOpen = _a.toggleOpen, _b = _a.placement, placement = _b === void 0 ? 'bottom-start' : _b, _c = _a.offset, _d = _c === void 0 ? initialOffset : _c, horizontal = _d.horizontal, vertical = _d.vertical, _e = _a.trigger, trigger = _e === void 0 ? 'hover' : _e, rest = __rest(_a, ["children", "anchorElement", "open", "toggleOpen", "placement", "offset", "trigger"]);
     var containerElement = document.getElementById('root');
     var referenceElement = React.useRef(null);
     var popperElement = React.useRef(null);
-    var _f = React.useState(false), visible = _f[0], setVisibility = _f[1];
-    var _g = reactPopper.usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
+    var _f = reactPopper.usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
         placement: placement,
         strategy: 'absolute',
         modifiers: [
@@ -1011,7 +1010,7 @@ var Dropdown = function (_a) {
                 },
             },
         ],
-    }), styles = _g.styles, attributes = _g.attributes, update = _g.update;
+    }), styles = _f.styles, attributes = _f.attributes, update = _f.update;
     React.useEffect(function () {
         var handleDocumentClick = function (_a) {
             var _b, _c;
@@ -1022,7 +1021,7 @@ var Dropdown = function (_a) {
                 ((_c = popperElement.current) === null || _c === void 0 ? void 0 : _c.contains(target))) {
                 return;
             }
-            setVisibility(false);
+            toggleOpen(false);
         };
         var eventListener = trigger === 'hover' ? 'mousemove' : 'mousedown';
         document.addEventListener(eventListener, handleDocumentClick);
@@ -1031,27 +1030,28 @@ var Dropdown = function (_a) {
         };
     }, []);
     var updatePopperPosition = function () { return update && update(); };
+    React.useLayoutEffect(function () {
+        updatePopperPosition();
+    }, [open]);
     var actions = function () {
         if (trigger === 'click') {
             return {
                 onClick: function () {
-                    setVisibility(function (currentState) { return !currentState; });
-                    updatePopperPosition();
+                    toggleOpen(!open);
                 },
             };
         }
         return {
             onMouseEnter: function () {
-                setVisibility(true);
-                updatePopperPosition();
+                toggleOpen(true);
             },
         };
     };
     return (React__default['default'].createElement(ReferenceContainer, __assign({ ref: referenceElement }, actions()),
         anchorElement,
         ReactDOM__default['default'].createPortal(React__default['default'].createElement(PopperContainer, __assign({ ref: popperElement, style: styles.popper }, attributes.popper),
-            React__default['default'].createElement(DropdownItemsContainer, __assign({ style: styles.offset, visible: visible }, rest), React__default['default'].Children.map(children, function (child) {
-                return (React__default['default'].createElement(DropdownItem, { onClick: function () { return setVisibility(false); } }, child));
+            React__default['default'].createElement(DropdownItemsContainer, __assign({ style: styles.offset, visible: open }, rest), React__default['default'].Children.map(children, function (child) {
+                return (React__default['default'].createElement(DropdownItem, { onClick: function () { return toggleOpen(false); } }, child));
             }))), containerElement)));
 };
 
@@ -1130,12 +1130,11 @@ var PopoverContent = styled__default['default'].div(templateObject_4 || (templat
 var templateObject_1, templateObject_2, templateObject_3, templateObject_4;
 
 var Popover = function (_a) {
-    var children = _a.children, content = _a.content, _b = _a.placement, placement = _b === void 0 ? 'top' : _b, _c = _a.trigger, trigger = _c === void 0 ? 'hover' : _c, _d = _a.offset, _e = _d === void 0 ? { horizontal: 0, vertical: 0 } : _d, horizontal = _e.horizontal, vertical = _e.vertical, rest = __rest(_a, ["children", "content", "placement", "trigger", "offset"]);
+    var children = _a.children, content = _a.content, open = _a.open, toggleOpen = _a.toggleOpen, _b = _a.placement, placement = _b === void 0 ? 'top' : _b, _c = _a.trigger, trigger = _c === void 0 ? 'hover' : _c, _d = _a.offset, _e = _d === void 0 ? { horizontal: 0, vertical: 0 } : _d, horizontal = _e.horizontal, vertical = _e.vertical, rest = __rest(_a, ["children", "content", "open", "toggleOpen", "placement", "trigger", "offset"]);
     var referenceElement = React.useRef(null);
     var popperElement = React.useRef(null);
     var arrowElement = React.useRef(null);
-    var _f = React.useState(false), visible = _f[0], setVisibility = _f[1];
-    var _g = reactPopper.usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
+    var _f = reactPopper.usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
         placement: placement,
         modifiers: [
             {
@@ -1152,7 +1151,7 @@ var Popover = function (_a) {
                 },
             },
         ],
-    }), styles = _g.styles, attributes = _g.attributes, update = _g.update;
+    }), styles = _f.styles, attributes = _f.attributes, update = _f.update;
     React.useEffect(function () {
         var handleDocumentClick = function (_a) {
             var _b, _c;
@@ -1163,7 +1162,7 @@ var Popover = function (_a) {
                 ((_c = popperElement.current) === null || _c === void 0 ? void 0 : _c.contains(target))) {
                 return;
             }
-            setVisibility(false);
+            toggleOpen(false);
         };
         var eventListener = trigger === 'hover' ? 'mousemove' : 'mousedown';
         document.addEventListener(eventListener, handleDocumentClick);
@@ -1172,25 +1171,26 @@ var Popover = function (_a) {
         };
     }, []);
     var updatePopperPosition = function () { return update && update(); };
+    React.useLayoutEffect(function () {
+        updatePopperPosition();
+    }, [open]);
     var actions = function () {
         if (trigger === 'click') {
             return {
                 onClick: function () {
-                    setVisibility(function (currentState) { return !currentState; });
-                    updatePopperPosition();
+                    toggleOpen(!open);
                 },
             };
         }
         return {
             onMouseEnter: function () {
-                setVisibility(true);
-                updatePopperPosition();
+                toggleOpen(true);
             },
         };
     };
     return (React__default['default'].createElement(React__default['default'].Fragment, null,
         React__default['default'].createElement(Container, __assign({ ref: referenceElement }, actions(), rest), children),
-        ReactDOM__default['default'].createPortal(React__default['default'].createElement(PopoverContent, __assign({ ref: popperElement, style: __assign(__assign({}, styles.popper), styles.offset) }, attributes.popper, { visible: visible }), content), document.getElementById('root'))));
+        ReactDOM__default['default'].createPortal(React__default['default'].createElement(PopoverContent, __assign({ ref: popperElement, style: __assign(__assign({}, styles.popper), styles.offset) }, attributes.popper, { visible: open }), content), document.getElementById('root'))));
 };
 
 exports.Avatar = Avatar;

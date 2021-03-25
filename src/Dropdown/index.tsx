@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { usePopper } from 'react-popper';
 
@@ -25,6 +25,8 @@ const initialOffset = {
 const Dropdown: React.FC<IDropdownProps> = ({
   children,
   anchorElement,
+  open,
+  toggleOpen,
   placement = 'bottom-start',
   offset: { horizontal, vertical } = initialOffset,
   trigger = 'hover',
@@ -33,8 +35,6 @@ const Dropdown: React.FC<IDropdownProps> = ({
   const containerElement = document.getElementById('root');
   const referenceElement = useRef(null);
   const popperElement = useRef(null);
-
-  const [visible, setVisibility] = useState(false);
 
   const { styles, attributes, update } = usePopper(
     referenceElement?.current,
@@ -60,12 +60,12 @@ const Dropdown: React.FC<IDropdownProps> = ({
       // if trigger is 'hover' and mouse outside achorElement/dropdown: hide dropdown.
       if (
         referenceElement.current?.contains(target) ||
-        (popperElement.current?.contains(target) && trigger === 'hover')
+        popperElement.current?.contains(target)
       ) {
         return;
       }
 
-      setVisibility(false);
+      toggleOpen(false);
     };
 
     const eventListener = trigger === 'hover' ? 'mousemove' : 'mousedown';
@@ -79,20 +79,22 @@ const Dropdown: React.FC<IDropdownProps> = ({
 
   const updatePopperPosition = () => update && update();
 
+  useLayoutEffect(() => {
+    updatePopperPosition();
+  }, [open]);
+
   const actions = () => {
     if (trigger === 'click') {
       return {
         onClick: () => {
-          setVisibility((currentState) => !currentState);
-          updatePopperPosition();
+          toggleOpen(!open);
         },
       };
     }
 
     return {
       onMouseEnter: () => {
-        setVisibility(true);
-        updatePopperPosition();
+        toggleOpen(true);
       },
     };
   };
@@ -109,12 +111,12 @@ const Dropdown: React.FC<IDropdownProps> = ({
         >
           <s.DropdownItemsContainer
             style={styles.offset}
-            visible={visible}
+            visible={open}
             {...rest}
           >
             {React.Children.map(children, (child) => {
               return (
-                <s.DropdownItem onClick={() => setVisibility(false)}>
+                <s.DropdownItem onClick={() => toggleOpen(false)}>
                   {child}
                 </s.DropdownItem>
               );

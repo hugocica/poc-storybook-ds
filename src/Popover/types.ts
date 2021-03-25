@@ -9,4 +9,6 @@ export interface IPopoverProps {
   };
   placement?: Placement;
   trigger?: 'hover' | 'click';
+  open: boolean;
+  toggleOpen: (open: boolean) => void;
 }
