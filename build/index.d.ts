@@ -9,4 +9,5 @@ import TextField from 'Inputs/TextField';
 import Password from 'Inputs/Password';
 import Popover from 'Popover';
 import Typography from 'Typography';
-export { theme, Avatar, Button, ButtonLink, Dropdown, Icon, Loading, TextField, Password, Popover, Typography, };
+import IconButton from 'IconButton';
+export { theme, Avatar, Button, ButtonLink, Dropdown, Icon, Loading, IconButton, TextField, Password, Popover, Typography, };
