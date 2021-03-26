@@ -6,6 +6,10 @@ import { TIconButtonProps } from './types';
 import * as s from './styles';
 
 const defaultProperties = {
+  add: {
+    padding: '5px 4px 0',
+    iconProperties: { style: { width: '78%', height: '83%' } },
+  },
   'arrow-left': {
     iconProperties: { style: { width: '78%', height: '72%' } },
     padding: '5px 8px 0',

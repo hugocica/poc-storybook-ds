@@ -2,6 +2,7 @@ import React from 'react';
 
 import Icon from './index';
 
+export const Add = () => <Icon name="add" />;
 export const ArrowDown = () => <Icon name="arrow-down" />;
 export const ArrowLeft = () => <Icon name="arrow-left" />;
 export const ArrowRigh = () => <Icon name="arrow-right" />;

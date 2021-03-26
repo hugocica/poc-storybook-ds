@@ -1,6 +1,10 @@
 import IconButton from './index';
 import React from 'react';
 
+export const Add = () => (
+  <IconButton name="add" iconProperties={{ fill: 'red' }} />
+)
+
 export const ArrowLeft = () => (
   <IconButton name="arrow-left" iconProperties={{ fill: 'red' }} />
 );

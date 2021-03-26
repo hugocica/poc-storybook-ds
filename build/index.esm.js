@@ -78,6 +78,7 @@ var colors = {
         lightgrey: '#AEC0D1',
         lightergrey: '#D4D6E9',
         lightergrey25: 'rgba(212, 214, 233, 0.25)',
+        muchLighterGrey: '#F7F6FB',
     },
     //old colors
     grey1: 'rgb(241, 241, 241)',
@@ -235,6 +236,21 @@ var findColorInTheme = function (color, opacity) {
         colors.secondary[color] ||
         colors.primary[color], opacity);
 };
+
+var _path$l;
+
+function _extends$l() { _extends$l = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends$l.apply(this, arguments); }
+
+function SvgAdd(props) {
+  return /*#__PURE__*/createElement("svg", _extends$l({
+    width: 14,
+    height: 14,
+    fill: "#4C5867",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, props), _path$l || (_path$l = /*#__PURE__*/createElement("path", {
+    d: "M14 8H8v6H6V8H0V6h6V0h2v6h6v2z"
+  })));
+}
 
 var _path$k;
 
@@ -763,6 +779,7 @@ function SvgEyeVisible(props) {
 }
 
 var iconDictionary = {
+    add: SvgAdd,
     'arrow-down': SvgArrowDown,
     'arrow-left': SvgArrowLeft,
     'arrow-right': SvgArrowRight,
@@ -1194,6 +1211,10 @@ var Button = styled.button(templateObject_2 || (templateObject_2 = __makeTemplat
 var templateObject_1, templateObject_2;
 
 var defaultProperties = {
+    add: {
+        padding: '5px 4px 0',
+        iconProperties: { style: { width: '78%', height: '83%' } },
+    },
     'arrow-left': {
         iconProperties: { style: { width: '78%', height: '72%' } },
         padding: '5px 8px 0',

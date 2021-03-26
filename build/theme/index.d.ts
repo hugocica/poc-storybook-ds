@@ -61,6 +61,7 @@ export declare const colors: {
         lightgrey: string;
         lightergrey: string;
         lightergrey25: string;
+        muchLighterGrey: string;
     };
     grey1: string;
     grey2: string;
@@ -182,6 +183,7 @@ declare const _default: {
             lightgrey: string;
             lightergrey: string;
             lightergrey25: string;
+            muchLighterGrey: string;
         };
         grey1: string;
         grey2: string;
