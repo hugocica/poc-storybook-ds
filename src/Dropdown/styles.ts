@@ -19,7 +19,6 @@ export const DropdownItemsContainer = styled.div<TDropdownItemsContainer>`
     background-color: ${theme.colors.neutrals.white};
     display: ${visible ? 'flex' : 'none'};
     flex-direction: column;
-    padding: ${theme.spacing(1)}px;
     position: relative;
     z-index: 1;
   `}

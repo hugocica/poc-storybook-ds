@@ -973,7 +973,7 @@ var PopperContainer = styled__default['default'].div(templateObject_2$3 || (temp
 var DropdownItemsContainer = styled__default['default'].div(templateObject_4$2 || (templateObject_4$2 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme, visible = _a.visible;
-    return styled.css(templateObject_3$2 || (templateObject_3$2 = __makeTemplateObject(["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "], ["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    padding: ", "px;\n    position: relative;\n    z-index: 1;\n  "])), theme.shadows.popper, theme.colors.neutrals.white, visible ? 'flex' : 'none', theme.spacing(1));
+    return styled.css(templateObject_3$2 || (templateObject_3$2 = __makeTemplateObject(["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    position: relative;\n    z-index: 1;\n  "], ["\n    box-shadow: ", ";\n    background-color: ", ";\n    display: ", ";\n    flex-direction: column;\n    position: relative;\n    z-index: 1;\n  "])), theme.shadows.popper, theme.colors.neutrals.white, visible ? 'flex' : 'none');
 });
 var DropdownItem = styled__default['default'].div(templateObject_5$1 || (templateObject_5$1 = __makeTemplateObject([""], [""])));
 var templateObject_1$4, templateObject_2$3, templateObject_3$2, templateObject_4$2, templateObject_5$1;
@@ -994,11 +994,11 @@ var initialOffset = {
  *  </Dropdown>
  */
 var Dropdown = function (_a) {
-    var children = _a.children, anchorElement = _a.anchorElement, open = _a.open, toggleOpen = _a.toggleOpen, _b = _a.placement, placement = _b === void 0 ? 'bottom-start' : _b, _c = _a.offset, _d = _c === void 0 ? initialOffset : _c, horizontal = _d.horizontal, vertical = _d.vertical, _e = _a.trigger, trigger = _e === void 0 ? 'hover' : _e, rest = __rest(_a, ["children", "anchorElement", "open", "toggleOpen", "placement", "offset", "trigger"]);
+    var children = _a.children, anchorElement = _a.anchorElement, open = _a.open, toggleOpen = _a.toggleOpen, trigger = _a.trigger, _b = _a.placement, placement = _b === void 0 ? 'bottom-start' : _b, _c = _a.offset, _d = _c === void 0 ? initialOffset : _c, horizontal = _d.horizontal, vertical = _d.vertical, rest = __rest(_a, ["children", "anchorElement", "open", "toggleOpen", "trigger", "placement", "offset"]);
     var containerElement = document.getElementById('root');
     var referenceElement = React.useRef(null);
     var popperElement = React.useRef(null);
-    var _f = reactPopper.usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
+    var _e = reactPopper.usePopper(referenceElement === null || referenceElement === void 0 ? void 0 : referenceElement.current, popperElement === null || popperElement === void 0 ? void 0 : popperElement.current, {
         placement: placement,
         strategy: 'absolute',
         modifiers: [
@@ -1010,7 +1010,7 @@ var Dropdown = function (_a) {
                 },
             },
         ],
-    }), styles = _f.styles, attributes = _f.attributes, update = _f.update;
+    }), styles = _e.styles, attributes = _e.attributes, update = _e.update;
     React.useEffect(function () {
         var handleDocumentClick = function (_a) {
             var _b, _c;
@@ -1034,18 +1034,21 @@ var Dropdown = function (_a) {
         updatePopperPosition();
     }, [open]);
     var actions = function () {
-        if (trigger === 'click') {
-            return {
-                onClick: function () {
-                    toggleOpen(!open);
-                },
-            };
+        switch (trigger) {
+            case 'click': {
+                return {
+                    onClick: function () {
+                        toggleOpen(!open);
+                    },
+                };
+            }
+            case 'hover':
+                return {
+                    onMouseEnter: function () {
+                        toggleOpen(true);
+                    },
+                };
         }
-        return {
-            onMouseEnter: function () {
-                toggleOpen(true);
-            },
-        };
     };
     return (React__default['default'].createElement(ReferenceContainer, __assign({ ref: referenceElement }, actions()),
         anchorElement,
@@ -1071,7 +1074,7 @@ var Label = styled__default['default'](Typography).attrs(function () { return ({
     variant: 'label',
     type: 'caption',
 }); })(templateObject_1$2 || (templateObject_1$2 = __makeTemplateObject([""], [""])));
-var InputContent = styled__default['default'].div(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n"], ["\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n"])));
+var InputContent = styled__default['default'].div(templateObject_2$1 || (templateObject_2$1 = __makeTemplateObject(["\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  min-width: 50px;\n"], ["\n  display: flex;\n  flex: 1;\n  flex-direction: column;\n  min-width: 50px;\n"])));
 var Container$1 = styled__default['default'].div(templateObject_4$1 || (templateObject_4$1 = __makeTemplateObject(["\n  ", "\n"], ["\n  ",
     "\n"])), function (_a) {
     var theme = _a.theme, color = _a.color, outlined = _a.outlined;
@@ -1198,6 +1201,7 @@ exports.Button = Button;
 exports.ButtonLink = ButtonLink;
 exports.Dropdown = Dropdown;
 exports.Icon = IconCmp;
+exports.Loading = Loading;
 exports.Password = Password;
 exports.Popover = Popover;
 exports.TextField = TextField;

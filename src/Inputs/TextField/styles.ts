@@ -12,6 +12,7 @@ export const InputContent = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 50px;
 `;
 
 type TContainerProps = Pick<ITextFieldProps, 'color' | 'outlined'>;
