@@ -5,10 +5,12 @@ import Button from 'Button';
 import ButtonLink from 'Button/Link';
 import Dropdown from 'Dropdown';
 import Icon from 'Icon';
+import Loading from 'Loading';
 import TextField from 'Inputs/TextField';
 import Password from 'Inputs/Password';
 import Popover from 'Popover';
 import Typography from 'Typography';
+import IconButton from 'IconButton';
 
 export {
   theme,
@@ -17,6 +19,8 @@ export {
   ButtonLink,
   Dropdown,
   Icon,
+  Loading,
+  IconButton,
   TextField,
   Password,
   Popover,

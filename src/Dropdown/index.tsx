@@ -27,9 +27,9 @@ const Dropdown: React.FC<IDropdownProps> = ({
   anchorElement,
   open,
   toggleOpen,
+  trigger,
   placement = 'bottom-start',
   offset: { horizontal, vertical } = initialOffset,
-  trigger = 'hover',
   ...rest
 }) => {
   const containerElement = document.getElementById('root');
@@ -84,19 +84,23 @@ const Dropdown: React.FC<IDropdownProps> = ({
   }, [open]);
 
   const actions = () => {
-    if (trigger === 'click') {
-      return {
-        onClick: () => {
-          toggleOpen(!open);
-        },
-      };
+    switch (trigger) {
+      case 'click': {
+        return {
+          onClick: () => {
+            toggleOpen(!open);
+          },
+        };
+      }
+      case 'hover':
+        return {
+          onMouseEnter: () => {
+            toggleOpen(true);
+          },
+        };
+      default:
+        break;
     }
-
-    return {
-      onMouseEnter: () => {
-        toggleOpen(true);
-      },
-    };
   };
 
   return (
