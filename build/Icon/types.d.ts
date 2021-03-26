@@ -1,6 +1,7 @@
 /// <reference types="react" />
 import { TColors } from '../theme';
 export declare const iconDictionary: {
+    add: import("react").FC<import("react").SVGProps<SVGSVGElement>>;
     'arrow-down': import("react").FC<import("react").SVGProps<SVGSVGElement>>;
     'arrow-left': import("react").FC<import("react").SVGProps<SVGSVGElement>>;
     'arrow-right': import("react").FC<import("react").SVGProps<SVGSVGElement>>;

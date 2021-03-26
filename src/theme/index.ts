@@ -65,6 +65,7 @@ export const colors = {
     lightgrey: '#AEC0D1',
     lightergrey: '#D4D6E9',
     lightergrey25: 'rgba(212, 214, 233, 0.25)',
+    muchLighterGrey: '#F7F6FB',
   },
 
   //old colors

@@ -1,3 +1,4 @@
+import { ReactComponent as add } from './assets/add.svg';
 import { ReactComponent as arrowdown } from './assets/arrow-down.svg';
 import { ReactComponent as arrowleft } from './assets/arrow-left.svg';
 import { ReactComponent as arrowright } from './assets/arrow-right.svg';
@@ -23,6 +24,7 @@ import { ReactComponent as visible } from './assets/eye-visible.svg';
 import { TColors } from '../theme';
 
 export const iconDictionary = {
+  add,
   'arrow-down': arrowdown,
   'arrow-left': arrowleft,
   'arrow-right': arrowright,
